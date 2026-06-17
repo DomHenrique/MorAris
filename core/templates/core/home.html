@@ -238,33 +238,67 @@
 
 <!-- Unidades / Showrooms -->
 {% if unidades %}
-<section class="py-5">
+<section class="py-5" style="background-color: var(--background-color);">
     <div class="container py-5">
-        <div class="row g-5">
-            {% for uni in unidades %}
-            <div class="col-lg-6">
-                <div class="p-5 bg-white rounded shadow-sm h-100">
-                    <p class="text-uppercase mb-2" style="color: var(--primary-color); letter-spacing: 2px; font-size: 0.85rem;">{{ uni.title_eyebrow }}</p>
-                    <h3 class="display-font mb-4">{{ uni.title_main }}</h3>
-                    <p class="mb-4"><strong>Endereço:</strong><br>{{ uni.endereco }} - {{ uni.cidade }}/{{ uni.estado }}</p>
-                    <p class="mb-4"><strong>Horário:</strong><br>{{ uni.business_hours|linebreaksbr }}</p>
-                    {% if uni.mapa_url %}
-                    <div class="mb-4 rounded overflow-hidden" style="height: 220px;">
-                        <iframe src="{{ uni.mapa_url }}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="text-center mb-5">
+            <p class="text-uppercase mb-2" style="color: var(--primary-color); letter-spacing: 3px; font-size: 0.8rem; font-weight: 600;">Venha Nos Visitar</p>
+            <h2 class="display-font display-6">Nossos Showrooms</h2>
+        </div>
+        {% for uni in unidades %}
+        <div class="row g-0 rounded shadow overflow-hidden mb-5 bg-white {% if forloop.counter|divisibleby:2 %}flex-row-reverse{% endif %}">
+            <!-- Info Side -->
+            <div class="col-lg-5 d-flex flex-column justify-content-center p-5">
+                {% if uni.title_eyebrow %}
+                <p class="text-uppercase mb-2" style="color: var(--primary-color); letter-spacing: 2px; font-size: 0.75rem; font-weight: 600;">{{ uni.title_eyebrow }}</p>
+                {% endif %}
+                <h3 class="display-font h4 mb-4">{{ uni.title_main }}</h3>
+
+                <div class="mb-3 d-flex gap-3">
+                    <div style="color: var(--primary-color); margin-top: 3px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                     </div>
-                    {% endif %}
-                    <div class="d-flex gap-2 flex-wrap mt-2">
-                        {% if uni.whatsapp %}
-                        <a href="https://wa.me/{{ uni.whatsapp|cut:' '|cut:'-'|cut:'('|cut:')' }}" target="_blank" class="btn btn-primary-custom">Falar no WhatsApp</a>
-                        {% endif %}
-                        {% if uni.rota_url %}
-                        <a href="{{ uni.rota_url }}" target="_blank" class="btn btn-outline-custom">Ver Rota</a>
-                        {% endif %}
+                    <div>
+                        <p class="mb-0 fw-semibold" style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Endereço</p>
+                        <p class="mb-0">{{ uni.endereco }}<br>{{ uni.cidade }}/{{ uni.estado }}{% if uni.cep %} — CEP {{ uni.cep }}{% endif %}</p>
                     </div>
                 </div>
+
+                {% if uni.business_hours %}
+                <div class="mb-4 d-flex gap-3">
+                    <div style="color: var(--primary-color); margin-top: 3px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <div>
+                        <p class="mb-0 fw-semibold" style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Horário</p>
+                        <p class="mb-0">{{ uni.business_hours|linebreaksbr }}</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="d-flex gap-2 flex-wrap mt-2">
+                    {% if uni.whatsapp %}
+                    <a href="https://wa.me/{{ uni.whatsapp|cut:' '|cut:'-'|cut:'('|cut:')' }}" target="_blank" class="btn btn-primary-custom">
+                        Falar no WhatsApp
+                    </a>
+                    {% endif %}
+                    {% if uni.rota_url %}
+                    <a href="{{ uni.rota_url }}" target="_blank" class="btn btn-outline-custom">Ver Rota</a>
+                    {% endif %}
+                </div>
             </div>
-            {% endfor %}
+
+            <!-- Map Side -->
+            <div class="col-lg-7" style="min-height: 400px;">
+                {% if uni.mapa_url %}
+                <iframe src="{{ uni.mapa_url }}" width="100%" height="100%" style="border:0; display:block; min-height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                {% else %}
+                <div class="h-100 d-flex align-items-center justify-content-center" style="background: #eee; min-height: 400px; color: var(--text-muted);">
+                    <p class="mb-0">Mapa não configurado</p>
+                </div>
+                {% endif %}
+            </div>
         </div>
+        {% endfor %}
     </div>
 </section>
 {% endif %}
