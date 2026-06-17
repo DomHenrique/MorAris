@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import Campaign, Banner, Testimonial, Category, Product
-from empresa.models import Unidade
+from empresa.models import Unidade, SobreEmpresa, Marca
 
 class HomeView(TemplateView):
     template_name = "core/home.html"
@@ -26,6 +26,10 @@ class HomeView(TemplateView):
         context['categories'] = Category.objects.all()
         context['testimonials'] = Testimonial.objects.filter(active=True)
         context['unidades'] = Unidade.objects.filter(is_active=True)
+        
+        # New Context Variables for the Home Sections
+        context['sobre_empresa'] = SobreEmpresa.objects.first()
+        context['marcas_destaque'] = Marca.objects.filter(em_destaque=True, is_active=True).order_by('ordem')
         
         return context
 

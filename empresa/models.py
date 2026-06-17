@@ -1,5 +1,41 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
+class SobreEmpresa(models.Model):
+    titulo_secao = models.CharField("Título da Seção", max_length=100, default="Sobre Nós")
+    texto = models.TextField("Texto Principal")
+    imagem_loja = models.ImageField("Imagem da Loja", upload_to='empresa/sobre/', blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Sobre a Empresa"
+        verbose_name_plural = "Sobre a Empresa"
+
+    def save(self, *args, **kwargs):
+        if not self.pk and SobreEmpresa.objects.exists():
+            raise ValidationError('Só pode existir uma instância de Sobre a Empresa.')
+        self.pk = 1
+        super(SobreEmpresa, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        pass
+
+    def __str__(self):
+        return "Configuração da Seção Sobre Nós"
+
+class Marca(models.Model):
+    nome = models.CharField("Nome da Marca", max_length=100)
+    logo = models.ImageField("Logo da Marca", upload_to='empresa/marcas/')
+    em_destaque = models.BooleanField("Em Destaque", default=True, help_text="Se marcado, a marca aparecerá no carrossel da home.")
+    ordem = models.IntegerField("Ordem de Exibição", default=0)
+    is_active = models.BooleanField("Ativa", default=True)
+
+    class Meta:
+        verbose_name = "Marca Parceira"
+        verbose_name_plural = "Marcas Parceiras"
+        ordering = ['ordem', 'nome']
+
+    def __str__(self):
+        return self.nome
 class Unidade(models.Model):
     TIPO_CHOICES = (
         ('showroom', 'Showroom'),
