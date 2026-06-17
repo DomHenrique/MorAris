@@ -31,7 +31,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-please-ch
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+raw_hosts = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1')
+ALLOWED_HOSTS = [
+    host.strip().replace('https://', '').replace('http://', '').strip('/') 
+    for host in raw_hosts.split(',')
+]
 
 # Security Settings for Reverse Proxy (Traefik)
 csrf_trusted = os.environ.get('CSRF_TRUSTED_ORIGINS')
@@ -99,6 +103,11 @@ WSGI_APPLICATION = 'moraris.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASE_URL = os.environ.get('DATABASE_URL')
+
+# Fallback in case user put postgres connection string in SUPABASE_URL
+supabase_url_env = os.environ.get('SUPABASE_URL', '')
+if not DATABASE_URL and supabase_url_env.startswith('postgres'):
+    DATABASE_URL = supabase_url_env
 
 if DATABASE_URL:
     DATABASES = {
