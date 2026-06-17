@@ -134,3 +134,25 @@ footer a {
 footer a:hover {
     color: var(--background-color);
 }
+
+/* Infinite Marquee */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.marquee-track {
+    display: inline-flex;
+    gap: 4rem;
+    animation: scroll-left 20s linear infinite;
+}
+
+.marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}

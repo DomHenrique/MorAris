@@ -25,4 +25,4 @@
 
 ## 6. Deploy
 
-- [ ] 6.1 Commit changes, push to GitHub, and restart the Portainer stack to verify models and sections render correctly on production.
+- [x] 6.1 Commit changes, push to GitHub, and restart the Portainer stack to verify models and sections render correctly on production.

@@ -134,12 +134,19 @@
 <section class="py-5" style="background-color: var(--background-color);">
     <div class="container py-4 text-center">
         <h6 class="text-uppercase text-muted tracking-wide mb-4">Marcas em Destaque</h6>
-        <div class="d-flex justify-content-center align-items-center flex-wrap gap-5">
-            {% for marca in marcas_destaque %}
-            <div class="brand-item">
-                <img src="{{ marca.logo.url }}" alt="{{ marca.nome }}" style="max-height: 60px; object-fit: contain; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'; this.style.opacity='1'" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.7'">
+        <div class="marquee-container">
+            <div class="marquee-track">
+                {% for marca in marcas_destaque %}
+                <div class="brand-item">
+                    <img src="{{ marca.logo.url }}" alt="{{ marca.nome }}" style="max-height: 60px; object-fit: contain; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'; this.style.opacity='1'" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.7'">
+                </div>
+                {% endfor %}
+                {% for marca in marcas_destaque %}
+                <div class="brand-item">
+                    <img src="{{ marca.logo.url }}" alt="{{ marca.nome }}" style="max-height: 60px; object-fit: contain; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s ease;" onmouseover="this.style.filter='grayscale(0%)'; this.style.opacity='1'" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.7'">
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
 </section>
