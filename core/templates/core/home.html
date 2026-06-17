@@ -248,9 +248,19 @@
                     <h3 class="display-font mb-4">{{ uni.title_main }}</h3>
                     <p class="mb-4"><strong>Endereço:</strong><br>{{ uni.endereco }} - {{ uni.cidade }}/{{ uni.estado }}</p>
                     <p class="mb-4"><strong>Horário:</strong><br>{{ uni.business_hours|linebreaksbr }}</p>
-                    {% if uni.whatsapp %}
-                    <a href="https://wa.me/{{ uni.whatsapp|cut:' '|cut:'-'|cut:'('|cut:')' }}" target="_blank" class="btn btn-primary-custom mt-2">Falar no WhatsApp</a>
+                    {% if uni.mapa_url %}
+                    <div class="mb-4 rounded overflow-hidden" style="height: 220px;">
+                        <iframe src="{{ uni.mapa_url }}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                     {% endif %}
+                    <div class="d-flex gap-2 flex-wrap mt-2">
+                        {% if uni.whatsapp %}
+                        <a href="https://wa.me/{{ uni.whatsapp|cut:' '|cut:'-'|cut:'('|cut:')' }}" target="_blank" class="btn btn-primary-custom">Falar no WhatsApp</a>
+                        {% endif %}
+                        {% if uni.rota_url %}
+                        <a href="{{ uni.rota_url }}" target="_blank" class="btn btn-outline-custom">Ver Rota</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             {% endfor %}
