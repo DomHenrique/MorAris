@@ -7,17 +7,18 @@ services:
     restart: unless-stopped
     working_dir: /app
     volumes:
-      - ./:/app
+      - moraris_static:/app/staticfiles
     command: >
-      bash -c "pip install -q -r requirements.txt &&
-               python manage.py collectstatic --noinput &&
-               python manage.py migrate &&
-               gunicorn moraris.wsgi:application
-               --workers 2
-               --bind 0.0.0.0:8000
-               --timeout 120
-               --access-logfile -
-               --error-logfile -"
+      bash -c "
+        apt-get update -qq && apt-get install -y -qq git curl &&
+        rm -rf /tmp/app_src &&
+        git clone https://github.com/DomHenrique/MorAris.git /tmp/app_src &&
+        cp -r /tmp/app_src/. /app/ &&
+        pip install -q -r /app/requirements.txt &&
+        python /app/manage.py collectstatic --noinput &&
+        python /app/manage.py migrate &&
+        exec gunicorn moraris.wsgi:application --workers 2 --bind 0.0.0.0:8000 --timeout 120 --chdir /app
+      "
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG=${DEBUG}
@@ -31,6 +32,10 @@ services:
       - AWS_S3_ENDPOINT_URL=${AWS_S3_ENDPOINT_URL}
       - AWS_S3_REGION_NAME=${AWS_S3_REGION_NAME}
       - USE_SUPABASE_STORAGE=${USE_SUPABASE_STORAGE}
+      - CSRF_TRUSTED_ORIGINS=https://moraris.griddmkt360.com.br
+      - CSRF_COOKIE_SECURE=True
+      - SESSION_COOKIE_SECURE=True
+      - TRUST_PROXY_SSL=True
     networks:
       - portainer_hnperf
     labels:
@@ -43,9 +48,12 @@ services:
       # Redirect HTTP → HTTPS
       - "traefik.http.routers.moraris-http.rule=Host(`moraris.griddmkt360.com.br`)"
       - "traefik.http.routers.moraris-http.entrypoints=web"
-      - "traefik.http.routers.moraris-http.middlewares=redirect-to-https"
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
+      - "traefik.http.routers.moraris-http.middlewares=moraris-https@docker"
+      - "traefik.http.middlewares.moraris-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.moraris-https.redirectscheme.permanent=true"
+
+volumes:
+  moraris_static:
 
 networks:
   portainer_hnperf:
