@@ -32,7 +32,7 @@ services:
       - AWS_S3_ENDPOINT_URL=${AWS_S3_ENDPOINT_URL}
       - AWS_S3_REGION_NAME=${AWS_S3_REGION_NAME}
       - USE_SUPABASE_STORAGE=${USE_SUPABASE_STORAGE}
-      - CSRF_TRUSTED_ORIGINS=https://moraris.griddmkt360.com.br
+      - CSRF_TRUSTED_ORIGINS=https://morAris.griddmkt360.com.br
       - CSRF_COOKIE_SECURE=True
       - SESSION_COOKIE_SECURE=True
       - TRUST_PROXY_SSL=True
@@ -40,13 +40,13 @@ services:
       - portainer_hnperf
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.moraris.rule=Host(`moraris.griddmkt360.com.br`)"
+      - "traefik.http.routers.moraris.rule=Host(`morAris.griddmkt360.com.br`)"
       - "traefik.http.routers.moraris.entrypoints=websecure"
       - "traefik.http.routers.moraris.tls=true"
       - "traefik.http.routers.moraris.tls.certresolver=letsencrypt"
       - "traefik.http.services.moraris.loadbalancer.server.port=8000"
       # Redirect HTTP → HTTPS
-      - "traefik.http.routers.moraris-http.rule=Host(`moraris.griddmkt360.com.br`)"
+      - "traefik.http.routers.moraris-http.rule=Host(`morAris.griddmkt360.com.br`)"
       - "traefik.http.routers.moraris-http.entrypoints=web"
       - "traefik.http.routers.moraris-http.middlewares=moraris-https@docker"
       - "traefik.http.middlewares.moraris-https.redirectscheme.scheme=https"
