@@ -33,6 +33,17 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
+# Security Settings for Reverse Proxy (Traefik)
+csrf_trusted = os.environ.get('CSRF_TRUSTED_ORIGINS')
+if csrf_trusted:
+    CSRF_TRUSTED_ORIGINS = [origin.strip().lower() for origin in csrf_trusted.split(',')]
+
+CSRF_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE', 'False') == 'True'
+SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE', 'False') == 'True'
+
+if os.environ.get('TRUST_PROXY_SSL', 'False') == 'True':
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Application definition
 
