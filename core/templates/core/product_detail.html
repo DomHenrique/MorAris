@@ -1,0 +1,97 @@
+{% extends "core/base.html" %}
+
+{% block title %}{{ product.name }} | MorARIs Revestimentos{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-muted text-decoration-none">Início</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'core:product_list' %}" class="text-muted text-decoration-none">Coleções</a></li>
+            {% if product.category %}
+            <li class="breadcrumb-item"><a href="{{ product.category.get_absolute_url }}" class="text-muted text-decoration-none">{{ product.category.name }}</a></li>
+            {% endif %}
+            <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row g-5">
+        <!-- Product Images -->
+        <div class="col-lg-7">
+            <div class="mb-4">
+                <picture>
+                    {% if product.mobile_image %}
+                    <source media="(max-width: 768px)" srcset="{{ product.mobile_image.url }}">
+                    {% endif %}
+                    <img src="{{ product.image.url }}" class="img-fluid rounded w-100" alt="{{ product.name }}" style="object-fit: cover; max-height: 700px;">
+                </picture>
+            </div>
+            
+            {% if gallery %}
+            <div class="row g-3">
+                {% for img in gallery %}
+                <div class="col-6 col-md-4">
+                    <picture>
+                        {% if img.mobile_image %}
+                        <source media="(max-width: 768px)" srcset="{{ img.mobile_image.url }}">
+                        {% endif %}
+                        <img src="{{ img.image.url }}" class="img-fluid rounded w-100" alt="Galeria {{ product.name }}" style="aspect-ratio: 1; object-fit: cover;">
+                    </picture>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Product Info -->
+        <div class="col-lg-5">
+            <div class="sticky-top" style="top: 100px;">
+                {% if product.category %}
+                <p class="text-uppercase mb-2" style="color: var(--primary-color); letter-spacing: 2px; font-size: 0.85rem;">{{ product.category.name }}</p>
+                {% endif %}
+                
+                <h1 class="display-font display-5 mb-4">{{ product.name }}</h1>
+                
+                <div class="mb-4 fs-5" style="color: var(--text-muted); line-height: 1.8;">
+                    {{ product.description|linebreaks }}
+                </div>
+                
+                <hr class="my-4">
+                
+                <a href="#" class="btn btn-primary-custom w-100 py-3 mb-3">Falar com Especialista</a>
+                <a href="{% url 'core:product_list' %}" class="btn btn-outline-custom w-100 py-3">Voltar às Coleções</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Related Products -->
+{% if related_products %}
+<section class="py-5 bg-white border-top mt-5">
+    <div class="container py-4">
+        <h3 class="display-font text-center mb-5">Pode Interessar Também</h3>
+        <div class="row g-4 justify-content-center">
+            {% for rel_prod in related_products %}
+            <div class="col-md-6 col-lg-3">
+                <div class="card product-card h-100">
+                    <a href="{{ rel_prod.get_absolute_url }}">
+                        <picture>
+                            {% if rel_prod.mobile_image %}
+                            <source media="(max-width: 768px)" srcset="{{ rel_prod.mobile_image.url }}">
+                            {% endif %}
+                            <img src="{{ rel_prod.image.url }}" class="card-img-top" alt="{{ rel_prod.name }}">
+                        </picture>
+                    </a>
+                    <div class="card-body text-center">
+                        <h5 class="product-title mt-2">
+                            <a href="{{ rel_prod.get_absolute_url }}" class="text-decoration-none text-dark">{{ rel_prod.name }}</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

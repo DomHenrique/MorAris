@@ -1,0 +1,50 @@
+{% extends "core/base.html" %}
+
+{% block title %}{{ category.name }} | MorARIs Revestimentos{% endblock %}
+
+{% block content %}
+<div class="bg-white py-5 border-bottom">
+    <div class="container text-center py-4">
+        <h1 class="display-font display-4 mb-3">{{ category.name }}</h1>
+        {% if category.meta_description %}
+        <p class="lead text-muted max-w-75 mx-auto">{{ category.meta_description }}</p>
+        {% endif %}
+        
+        <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+            <a href="{% url 'core:product_list' %}" class="btn btn-outline-custom">Todas</a>
+            {% for cat in categories %}
+            <a href="{{ cat.get_absolute_url }}" class="btn {% if cat.id == category.id %}btn-primary-custom{% else %}btn-outline-custom{% endif %}">{{ cat.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4">
+        {% for product in products %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card product-card h-100">
+                <a href="{{ product.get_absolute_url }}">
+                    <picture>
+                        {% if product.mobile_image %}
+                        <source media="(max-width: 768px)" srcset="{{ product.mobile_image.url }}">
+                        {% endif %}
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                    </picture>
+                </a>
+                <div class="card-body text-center">
+                    <div class="product-category">{{ category.name }}</div>
+                    <h5 class="product-title mt-2">
+                        <a href="{{ product.get_absolute_url }}" class="text-decoration-none text-dark">{{ product.name }}</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">Nenhum produto nesta categoria no momento.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

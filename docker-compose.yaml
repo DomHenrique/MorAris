@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  web:
+    image: python:3.12-slim
+    container_name: moraris_web
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - app_code:/app
+    command: >
+      bash -c "pip install -q -r requirements.txt &&
+               python manage.py collectstatic --noinput &&
+               python manage.py migrate &&
+               gunicorn config.wsgi:application
+               --workers 2
+               --bind 0.0.0.0:8000
+               --timeout 120
+               --access-logfile -
+               --error-logfile -"
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - DATABASE_URL=${DATABASE_URL}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_STORAGE_BUCKET_NAME=${AWS_STORAGE_BUCKET_NAME}
+      - AWS_S3_ENDPOINT_URL=${AWS_S3_ENDPOINT_URL}
+      - AWS_S3_REGION_NAME=${AWS_S3_REGION_NAME}
+      - USE_SUPABASE_STORAGE=${USE_SUPABASE_STORAGE}
+    networks:
+      - portainer_hnperf
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.moraris.rule=Host(`moraris.griddmkt360.com.br`)"
+      - "traefik.http.routers.moraris.entrypoints=websecure"
+      - "traefik.http.routers.moraris.tls=true"
+      - "traefik.http.routers.moraris.tls.certresolver=letsencrypt"
+      - "traefik.http.services.moraris.loadbalancer.server.port=8000"
+      # Redirect HTTP → HTTPS
+      - "traefik.http.routers.madereira-http.rule=Host(`saoluiz.griddmkt360.com.br`)"
+      - "traefik.http.routers.madereira-http.entrypoints=web"
+      - "traefik.http.routers.madereira-http.middlewares=redirect-to-https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
+
+networks:
+  portainer_hnperf:
+    external: true

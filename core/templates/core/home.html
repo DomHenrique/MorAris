@@ -1,0 +1,219 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<!-- Hero Banners -->
+{% if banners %}
+<div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        {% for banner in banners %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <picture>
+                {% if banner.mobile_image %}
+                <source media="(max-width: 768px)" srcset="{{ banner.mobile_image.url }}">
+                {% endif %}
+                <img src="{{ banner.image.url }}" alt="{{ banner.title|default:'Banner' }}">
+            </picture>
+            
+            {% if banner.title or banner.subtitle %}
+            <div class="carousel-caption d-flex align-items-center justify-content-center h-100 pb-0">
+                <div class="hero-caption" style="color: {{ banner.text_color }};">
+                    {% if banner.title %}
+                    <h2 class="display-font display-5 fw-bold mb-3" style="color: inherit;">{{ banner.title }}</h2>
+                    {% endif %}
+                    {% if banner.subtitle %}
+                    <p class="lead mb-4" style="color: inherit;">{{ banner.subtitle }}</p>
+                    {% endif %}
+                    {% if banner.link %}
+                    <a href="{{ banner.link }}" class="btn btn-primary-custom">{{ banner.link_text }}</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% if banners.count > 1 %}
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+    </button>
+    {% endif %}
+</div>
+{% endif %}
+
+<!-- Categories -->
+{% if categories %}
+<section class="py-5 bg-white">
+    <div class="container py-4">
+        <h2 class="display-font text-center mb-5">Explore Nossas Linhas</h2>
+        <div class="row g-4 justify-content-center">
+            {% for cat in categories %}
+            <div class="col-6 col-md-4 col-lg-3 text-center">
+                <a href="{{ cat.get_absolute_url }}" class="text-decoration-none">
+                    <div class="p-4 rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px; transition: transform 0.3s ease;">
+                        <span style="font-size: 2rem; color: var(--primary-color);">{% if cat.icon %}<i class="{{ cat.icon }}"></i>{% else %}✨{% endif %}</span>
+                    </div>
+                    <h5 class="text-dark">{{ cat.name }}</h5>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Featured Products -->
+{% if featured_products %}
+<section class="py-5">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="display-font display-6">{{ featured_title }}</h2>
+            {% if featured_subtitle %}
+            <p class="lead text-muted mt-3">{{ featured_subtitle }}</p>
+            {% endif %}
+        </div>
+        
+        <div class="row g-4">
+            {% for product in featured_products %}
+            <div class="col-md-6 col-lg-3">
+                <div class="card product-card h-100">
+                    <a href="{{ product.get_absolute_url }}">
+                        <picture>
+                            {% if product.mobile_image %}
+                            <source media="(max-width: 768px)" srcset="{{ product.mobile_image.url }}">
+                            {% endif %}
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        </picture>
+                    </a>
+                    <div class="card-body text-center">
+                        {% if product.category %}
+                        <div class="product-category">{{ product.category.name }}</div>
+                        {% endif %}
+                        <h5 class="product-title mt-2">
+                            <a href="{{ product.get_absolute_url }}" class="text-decoration-none text-dark">{{ product.name }}</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{% url 'core:product_list' %}" class="btn btn-outline-custom">Ver Todas as Coleções</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Diferenciais -->
+<section class="py-5" style="background-color: var(--background-color);">
+    <div class="container py-5 text-center">
+        <h2 class="display-font mb-5">A Essência MorARIs</h2>
+        <div class="row g-5">
+            <!-- Curadoria Exclusiva -->
+            <div class="col-md-6 col-lg-3">
+                <div class="mb-4">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </div>
+                <h5 class="fw-bold mb-3">Curadoria Exclusiva</h5>
+                <p class="text-muted">Selecionamos criteriosamente as melhores marcas de revestimentos e acabamentos para o seu projeto.</p>
+            </div>
+            
+            <!-- Consultoria Especializada -->
+            <div class="col-md-6 col-lg-3">
+                <div class="mb-4">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <h5 class="fw-bold mb-3">Consultoria Especializada</h5>
+                <p class="text-muted">Especialistas em design de interiores prontos para guiar você na materialização do seu lar.</p>
+            </div>
+
+            <!-- Logística Cuidadosa -->
+            <div class="col-md-6 col-lg-3">
+                <div class="mb-4">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="3" width="15" height="13"></rect>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                </div>
+                <h5 class="fw-bold mb-3">Logística Cuidadosa</h5>
+                <p class="text-muted">Entrega segura e planejada, garantindo a integridade de materiais premium até a sua obra.</p>
+            </div>
+
+            <!-- Design Atemporal -->
+            <div class="col-md-6 col-lg-3">
+                <div class="mb-4">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </div>
+                <h5 class="fw-bold mb-3">Design Atemporal</h5>
+                <p class="text-muted">Peças sofisticadas com texturas orgânicas que transformam qualquer ambiente em um espaço acolhedor.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+{% if testimonials %}
+<section class="py-5 bg-white">
+    <div class="container py-5">
+        <h2 class="display-font text-center mb-5">O que Dizem Nossos Clientes</h2>
+        <div class="row g-4 justify-content-center">
+            {% for testimonial in testimonials %}
+            <div class="col-md-4">
+                <div class="p-4 bg-light rounded text-center h-100">
+                    <div class="mb-3" style="color: #F5B041;">
+                        {% for i in testimonial.stars_filled %}★{% endfor %}
+                        {% for i in testimonial.stars_empty %}☆{% endfor %}
+                    </div>
+                    <p class="fst-italic mb-4">"{{ testimonial.text }}"</p>
+                    <h6 class="mb-0 fw-bold">{{ testimonial.name }}</h6>
+                    {% if testimonial.city %}<small class="text-muted">{{ testimonial.city }}</small>{% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Unidades / Showrooms -->
+{% if unidades %}
+<section class="py-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            {% for uni in unidades %}
+            <div class="col-lg-6">
+                <div class="p-5 bg-white rounded shadow-sm h-100">
+                    <p class="text-uppercase mb-2" style="color: var(--primary-color); letter-spacing: 2px; font-size: 0.85rem;">{{ uni.title_eyebrow }}</p>
+                    <h3 class="display-font mb-4">{{ uni.title_main }}</h3>
+                    <p class="mb-4"><strong>Endereço:</strong><br>{{ uni.endereco }} - {{ uni.cidade }}/{{ uni.estado }}</p>
+                    <p class="mb-4"><strong>Horário:</strong><br>{{ uni.business_hours|linebreaksbr }}</p>
+                    {% if uni.whatsapp %}
+                    <a href="https://wa.me/{{ uni.whatsapp|cut:' '|cut:'-'|cut:'('|cut:')' }}" target="_blank" class="btn btn-primary-custom mt-2">Falar no WhatsApp</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}
