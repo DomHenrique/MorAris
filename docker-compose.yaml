@@ -7,12 +7,12 @@ services:
     restart: unless-stopped
     working_dir: /app
     volumes:
-      - app_code:/app
+      - ./:/app
     command: >
       bash -c "pip install -q -r requirements.txt &&
                python manage.py collectstatic --noinput &&
                python manage.py migrate &&
-               gunicorn config.wsgi:application
+               gunicorn moraris.wsgi:application
                --workers 2
                --bind 0.0.0.0:8000
                --timeout 120
@@ -41,9 +41,9 @@ services:
       - "traefik.http.routers.moraris.tls.certresolver=letsencrypt"
       - "traefik.http.services.moraris.loadbalancer.server.port=8000"
       # Redirect HTTP → HTTPS
-      - "traefik.http.routers.madereira-http.rule=Host(`saoluiz.griddmkt360.com.br`)"
-      - "traefik.http.routers.madereira-http.entrypoints=web"
-      - "traefik.http.routers.madereira-http.middlewares=redirect-to-https"
+      - "traefik.http.routers.moraris-http.rule=Host(`moraris.griddmkt360.com.br`)"
+      - "traefik.http.routers.moraris-http.entrypoints=web"
+      - "traefik.http.routers.moraris-http.middlewares=redirect-to-https"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
 
