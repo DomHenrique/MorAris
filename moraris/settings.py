@@ -177,6 +177,12 @@ if USE_SUPABASE_STORAGE:
     AWS_DEFAULT_ACL = 'public-read'
     AWS_QUERYSTRING_AUTH = False  # Allows public URLs without tokens
 
+    if AWS_S3_ENDPOINT_URL:
+        import urllib.parse
+        parsed = urllib.parse.urlparse(AWS_S3_ENDPOINT_URL)
+        # Use the REST API URL for public objects instead of the S3 protocol endpoint
+        AWS_S3_CUSTOM_DOMAIN = f"{parsed.netloc}/storage/v1/object/public/{AWS_STORAGE_BUCKET_NAME}"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

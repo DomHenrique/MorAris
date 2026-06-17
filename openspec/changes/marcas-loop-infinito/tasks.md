@@ -11,5 +11,5 @@
 
 ## 3. Review & Deploy
 
-- [ ] 3.1 Verify locally (if possible) or visually confirm the duplicated loops and CSS syntax.
-- [ ] 3.2 Commit the changes, push to GitHub, and trigger the stack update in Portainer to see it live in production.
+- [x] 3.1 Verify locally (if possible) or visually confirm the duplicated loops and CSS syntax.
+- [x] 3.2 Commit the changes, push to GitHub, and trigger the stack update in Portainer to see it live in production.
