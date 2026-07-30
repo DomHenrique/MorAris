@@ -52,29 +52,87 @@
 <!-- Seção de Números / Credibilidade -->
 <section id="sobre" class="stats-section" aria-label="Nossos números">
     <div class="container">
-        <div class="row g-4 text-center align-items-center">
-            <div class="col-6 col-md-3">
+        <!-- Desktop Grid (≥ 768px) -->
+        <div class="row g-4 text-center align-items-center stats-desktop-grid">
+            <div class="col-md-3">
                 <div class="stat-item">
-                    <div class="stat-number">20+</div>
+                    <div class="stat-number counter" data-target="20" data-suffix="+">0+</div>
                     <div class="stat-label">Anos de Mercado</div>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-md-3">
                 <div class="stat-item">
-                    <div class="stat-number">5k+</div>
+                    <div class="stat-number counter" data-target="5" data-suffix="k+">0k+</div>
                     <div class="stat-label">Clientes Atendidos</div>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-md-3">
                 <div class="stat-item">
-                    <div class="stat-number">200+</div>
+                    <div class="stat-number counter" data-target="200" data-suffix="+">0+</div>
                     <div class="stat-label">Produtos Para Sua Obra</div>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-md-3">
                 <div class="stat-item">
-                    <div class="stat-number">100%</div>
+                    <div class="stat-number counter" data-target="100" data-suffix="%">0%</div>
                     <div class="stat-label">Qualidade Garantida</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Marquee (< 768px: linha única, 2 por tela, movimento infinito para a direita) -->
+        <div class="stats-marquee-wrapper">
+            <div class="stats-marquee-track">
+                <!-- Conjunto 1 -->
+                <div class="stats-marquee-item">
+                    <div class="stat-item">
+                        <div class="stat-number counter" data-target="20" data-suffix="+">0+</div>
+                        <div class="stat-label">Anos de Mercado</div>
+                    </div>
+                </div>
+                <div class="stats-marquee-item">
+                    <div class="stat-item">
+                        <div class="stat-number counter" data-target="5" data-suffix="k+">0k+</div>
+                        <div class="stat-label">Clientes Atendidos</div>
+                    </div>
+                </div>
+                <div class="stats-marquee-item">
+                    <div class="stat-item">
+                        <div class="stat-number counter" data-target="200" data-suffix="+">0+</div>
+                        <div class="stat-label">Produtos Para Sua Obra</div>
+                    </div>
+                </div>
+                <div class="stats-marquee-item">
+                    <div class="stat-item">
+                        <div class="stat-number counter" data-target="100" data-suffix="%">0%</div>
+                        <div class="stat-label">Qualidade Garantida</div>
+                    </div>
+                </div>
+
+                <!-- Conjunto 2 (Duplicado para loop infinito sem falhas) -->
+                <div class="stats-marquee-item">
+                    <div class="stat-item">
+                        <div class="stat-number counter" data-target="20" data-suffix="+">0+</div>
+                        <div class="stat-label">Anos de Mercado</div>
+                    </div>
+                </div>
+                <div class="stats-marquee-item">
+                    <div class="stat-item">
+                        <div class="stat-number counter" data-target="5" data-suffix="k+">0k+</div>
+                        <div class="stat-label">Clientes Atendidos</div>
+                    </div>
+                </div>
+                <div class="stats-marquee-item">
+                    <div class="stat-item">
+                        <div class="stat-number counter" data-target="200" data-suffix="+">0+</div>
+                        <div class="stat-label">Produtos Para Sua Obra</div>
+                    </div>
+                </div>
+                <div class="stats-marquee-item">
+                    <div class="stat-item">
+                        <div class="stat-number counter" data-target="100" data-suffix="%">0%</div>
+                        <div class="stat-label">Qualidade Garantida</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -450,4 +508,50 @@
 </section>
 {% endif %}
 
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const counters = document.querySelectorAll('.counter');
+    const animatedSet = new Set();
+
+    const startCounter = (counter) => {
+        if (animatedSet.has(counter)) return;
+        animatedSet.add(counter);
+
+        const target = +counter.getAttribute('data-target');
+        const suffix = counter.getAttribute('data-suffix') || '';
+        let count = 0;
+        const duration = 1400; // ms
+        const steps = 40;
+        const stepTime = duration / steps;
+        const inc = Math.max(1, Math.ceil(target / steps));
+
+        const timer = setInterval(() => {
+            count += inc;
+            if (count >= target) {
+                counter.innerText = target + suffix;
+                clearInterval(timer);
+            } else {
+                counter.innerText = count + suffix;
+            }
+        }, stepTime);
+    };
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startCounter(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        counters.forEach(counter => observer.observe(counter));
+    } else {
+        counters.forEach(startCounter);
+    }
+});
+</script>
 {% endblock %}

@@ -187,7 +187,8 @@ footer a:hover {
 
 @media (max-width: 768px) {
     .stats-section {
-        padding: 1.75rem 0;
+        padding: 1.5rem 0;
+        overflow: hidden;
     }
     .stats-section .stat-number {
         font-size: 2rem;
@@ -195,6 +196,58 @@ footer a:hover {
     .stats-section .stat-label {
         font-size: 0.72rem;
         letter-spacing: 1px;
+    }
+}
+
+/* Mobile Stats Marquee (Single line, infinite scroll rightward, 2 items per view) */
+@media (max-width: 767.98px) {
+    .stats-desktop-grid {
+        display: none !important;
+    }
+    
+    .stats-marquee-wrapper {
+        display: block !important;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        white-space: nowrap;
+    }
+
+    .stats-marquee-track {
+        display: inline-flex;
+        align-items: center;
+        width: max-content;
+        animation: marqueeScrollRight 16s linear infinite;
+    }
+
+    .stats-marquee-track:hover {
+        animation-play-state: paused;
+    }
+
+    .stats-marquee-item {
+        flex: 0 0 auto;
+        width: 46vw;
+        text-align: center;
+        padding: 0 0.5rem;
+        box-sizing: border-box;
+    }
+}
+
+@media (min-width: 768px) {
+    .stats-marquee-wrapper {
+        display: none !important;
+    }
+    .stats-desktop-grid {
+        display: flex !important;
+    }
+}
+
+@keyframes marqueeScrollRight {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0%);
     }
 }
 
