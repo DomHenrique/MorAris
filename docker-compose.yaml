@@ -20,26 +20,27 @@ services:
         exec gunicorn moraris.wsgi:application --workers 2 --bind 0.0.0.0:8000 --timeout 120 --chdir /app
       "
     environment:
-      - SECRET_KEY=${SECRET_KEY}
-      - DEBUG=${DEBUG}
-      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
-      - DATABASE_URL=${DATABASE_URL}
-      - SUPABASE_URL=${SUPABASE_URL}
-      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-      - AWS_STORAGE_BUCKET_NAME=${AWS_STORAGE_BUCKET_NAME}
-      - AWS_S3_ENDPOINT_URL=${AWS_S3_ENDPOINT_URL}
-      - AWS_S3_REGION_NAME=${AWS_S3_REGION_NAME}
-      - USE_SUPABASE_STORAGE=${USE_SUPABASE_STORAGE}
+      - SECRET_KEY=sua-secret-key-super-segura
+      - DEBUG=True
+      - ALLOWED_HOSTS=moraris.griddmkt360.com.br,localhost,127.0.0.1
+      - DATABASE_URL=postgresql://postgres.ndlcnmaaeoscvjbawjzj:LnueYwzF5WsHfpra@aws-1-us-east-2.pooler.supabase.com:6543/postgres
+      - SUPABASE_URL=https://ndlcnmaaeoscvjbawjzj.supabase.co
+      - SUPABASE_ANON_KEY=
+      - AWS_ACCESS_KEY_ID=aa5da95edc16e4b99866c540fc19fe6e
+      - AWS_SECRET_ACCESS_KEY=3ed48c8c14d3e8cefb6b5a38a824c4a38b8bd932eb2a1c4be7943a7e91169d11
+      - AWS_STORAGE_BUCKET_NAME=moraris
+      - AWS_S3_ENDPOINT_URL=https://ndlcnmaaeoscvjbawjzj.storage.supabase.co/storage/v1/s3
+      - AWS_S3_REGION_NAME=us-east-2
+      - USE_SUPABASE_STORAGE=True
       - CSRF_TRUSTED_ORIGINS=https://morAris.griddmkt360.com.br
       - CSRF_COOKIE_SECURE=True
       - SESSION_COOKIE_SECURE=True
       - TRUST_PROXY_SSL=True
     networks:
-      - portainer_hnperf
+      - rede_gridd
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=rede_gridd"
       - "traefik.http.routers.moraris.rule=Host(`moraris.griddmkt360.com.br`)"
       - "traefik.http.routers.moraris.entrypoints=websecure"
       - "traefik.http.routers.moraris.tls=true"
@@ -56,5 +57,5 @@ volumes:
   moraris_static:
 
 networks:
-  portainer_hnperf:
+  rede_gridd:
     external: true
