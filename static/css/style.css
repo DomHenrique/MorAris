@@ -374,3 +374,51 @@ footer a:hover {
         transform: scale(1.05);
     }
 }
+
+/* Mobile Reviews Marquee (Single line, 1 card centered in focus, infinite scroll rightward) */
+@media (max-width: 767.98px) {
+    .reviews-desktop-grid {
+        display: none !important;
+    }
+
+    .reviews-marquee-wrapper {
+        display: block !important;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        white-space: nowrap;
+        padding: 0.5rem 0;
+    }
+
+    .reviews-marquee-track {
+        display: inline-flex;
+        align-items: center;
+        width: max-content;
+        animation: marqueeScrollRight 18s linear infinite;
+    }
+
+    .reviews-marquee-track:hover {
+        animation-play-state: paused;
+    }
+
+    .reviews-marquee-item {
+        flex: 0 0 auto;
+        width: 86vw;
+        padding: 0 0.5rem;
+        box-sizing: border-box;
+    }
+
+    .reviews-marquee-item .card {
+        white-space: normal;
+        min-height: 180px;
+    }
+}
+
+@media (min-width: 768px) {
+    .reviews-marquee-wrapper {
+        display: none !important;
+    }
+    .reviews-desktop-grid {
+        display: flex !important;
+    }
+}
