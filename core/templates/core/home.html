@@ -269,73 +269,54 @@
 {% endif %}
 
 
-<!-- Diferenciais / A Essência MorARIs (Estilo Kastello Dark Banner) -->
-<section class="py-5" style="background-color: #1A1614; color: #ffffff;">
-    <div class="container py-4">
-        <!-- Linha Superior de Garantias -->
-        <div class="row g-4 justify-content-center align-items-center text-center pb-4 mb-4 border-bottom border-secondary border-opacity-25">
-            <div class="col-md-4 border-end-md border-secondary border-opacity-25">
-                <div class="d-flex align-items-center justify-content-center gap-3">
-                    <img src="{% static 'img/icons/qualidade-confianca.svg' %}" alt="Materiais de Qualidade" style="height: 38px; width: auto;">
-                    <span class="fw-bold text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px; color: #ffffff;">Materiais de Qualidade</span>
-                </div>
-            </div>
-            <div class="col-md-4 border-end-md border-secondary border-opacity-25">
-                <div class="d-flex align-items-center justify-content-center gap-3">
-                    <img src="{% static 'img/icons/SELO MORARIS.svg' %}" alt="As Melhores Marcas" style="height: 38px; width: auto; filter: invert(48%) sepia(89%) saturate(2476%) hue-rotate(360deg) brightness(102%) contrast(106%);">
-                    <span class="fw-bold text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px; color: #ffffff;">As Melhores Marcas</span>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="d-flex align-items-center justify-content-center gap-3">
-                    <img src="{% static 'img/icons/tudo-em-um-so-lugar.svg' %}" alt="Estamos Com Você" style="height: 38px; width: auto;">
-                    <div class="text-start">
-                        <span class="fw-bold text-uppercase d-block" style="font-size: 0.78rem; letter-spacing: 1px; color: #ffffff; line-height: 1.2;">Do início ao fim,</span>
-                        <span class="fw-bold text-uppercase d-block" style="font-size: 0.78rem; letter-spacing: 1px; color: #ff7300; line-height: 1.2;">Estamos com você!</span>
+<!-- Por que somos a melhor escolha do Vale do Caí? (Revertido conforme Print 1) -->
+<section class="py-5 bg-white">
+    <div class="container py-5 text-center">
+        <h2 class="display-font fw-bold mb-3" style="color: #2E2A28; font-size: 1.85rem;">Por que somos a melhor escolha do Vale do Caí?</h2>
+        <div class="mx-auto mb-5" style="width: 50px; height: 3px; background-color: #6e4d38; border-radius: 2px;"></div>
+        
+        <div class="row g-4 justify-content-center">
+            <!-- 1. Qualidade Certificada -->
+            <div class="col-md-6 col-lg-3">
+                <div class="p-3 h-100 d-flex flex-column align-items-center">
+                    <div class="mb-3 d-flex align-items-center justify-content-center" style="height: 60px;">
+                        <img src="{% static 'img/icons/selo.svg' %}" alt="Qualidade Certificada" style="max-height: 52px; width: auto;">
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4 Pilares Principais -->
-        <div class="row g-4 text-center align-items-center">
-            <!-- 1. Entrega Rápida -->
-            <div class="col-6 col-lg-3 border-end-lg border-secondary border-opacity-25">
-                <div class="p-3 p-md-4 h-100 d-flex flex-column align-items-center justify-content-center">
-                    <div class="mb-3">
-                        <img src="{% static 'img/icons/entrega-rapida.svg' %}" alt="Entrega Rápida" style="height: 68px; width: auto; transition: transform 0.3s ease;" class="feature-icon">
-                    </div>
-                    <h5 class="fw-bold text-uppercase mb-0" style="font-size: 1.05rem; letter-spacing: 1.5px; color: #ffffff; line-height: 1.3;">Entrega<br>Rápida</h5>
+                    <h5 class="fw-bold mb-2" style="font-size: 1.1rem; color: #2E2A28;">Qualidade Certificada</h5>
+                    <p class="text-muted small mb-0" style="line-height: 1.5; max-width: 250px;">Revestimentos selecionados e materiais das melhores marcas.</p>
                 </div>
             </div>
 
-            <!-- 2. Atendimento Especializado -->
-            <div class="col-6 col-lg-3 border-end-lg border-secondary border-opacity-25">
-                <div class="p-3 p-md-4 h-100 d-flex flex-column align-items-center justify-content-center">
-                    <div class="mb-3">
-                        <img src="{% static 'img/icons/atendimento-especializado.svg' %}" alt="Atendimento Especializado" style="height: 68px; width: auto; transition: transform 0.3s ease;" class="feature-icon">
+            <!-- 2. Entrega Rápida -->
+            <div class="col-md-6 col-lg-3">
+                <div class="p-3 h-100 d-flex flex-column align-items-center">
+                    <div class="mb-3 d-flex align-items-center justify-content-center" style="height: 60px;">
+                        <img src="{% static 'img/icons/caminhao.svg' %}" alt="Entrega Rápida" style="max-height: 52px; width: auto;">
                     </div>
-                    <h5 class="fw-bold text-uppercase mb-0" style="font-size: 1.05rem; letter-spacing: 1.5px; color: #ffffff; line-height: 1.3;">Atendimento<br>Especializado</h5>
+                    <h5 class="fw-bold mb-2" style="font-size: 1.1rem; color: #2E2A28;">Entrega Rápida</h5>
+                    <p class="text-muted small mb-0" style="line-height: 1.5; max-width: 250px;">Frota própria e agilidade na entrega direto na sua obra.</p>
                 </div>
             </div>
 
-            <!-- 3. Qualidade e Confiança -->
-            <div class="col-6 col-lg-3 border-end-lg border-secondary border-opacity-25">
-                <div class="p-3 p-md-4 h-100 d-flex flex-column align-items-center justify-content-center">
-                    <div class="mb-3">
-                        <img src="{% static 'img/icons/qualidade-confianca.svg' %}" alt="Qualidade e Confiança" style="height: 68px; width: auto; transition: transform 0.3s ease;" class="feature-icon">
+            <!-- 3. Variedade Completa -->
+            <div class="col-md-6 col-lg-3">
+                <div class="p-3 h-100 d-flex flex-column align-items-center">
+                    <div class="mb-3 d-flex align-items-center justify-content-center" style="height: 60px;">
+                        <img src="{% static 'img/icons/icon-tag.svg' %}" alt="Variedade Completa" style="max-height: 52px; width: auto;">
                     </div>
-                    <h5 class="fw-bold text-uppercase mb-0" style="font-size: 1.05rem; letter-spacing: 1.5px; color: #ffffff; line-height: 1.3;">Qualidade<br>e Confiança</h5>
+                    <h5 class="fw-bold mb-2" style="font-size: 1.1rem; color: #2E2A28;">Variedade Completa</h5>
+                    <p class="text-muted small mb-0" style="line-height: 1.5; max-width: 250px;">Tudo num só lugar, facilitando a logística da sua reforma.</p>
                 </div>
             </div>
 
-            <!-- 4. Tudo em um Só Lugar -->
-            <div class="col-6 col-lg-3">
-                <div class="p-3 p-md-4 h-100 d-flex flex-column align-items-center justify-content-center">
-                    <div class="mb-3">
-                        <img src="{% static 'img/icons/tudo-em-um-so-lugar.svg' %}" alt="Tudo em um Só Lugar" style="height: 68px; width: auto; transition: transform 0.3s ease;" class="feature-icon">
+            <!-- 4. Atendimento Especializado -->
+            <div class="col-md-6 col-lg-3">
+                <div class="p-3 h-100 d-flex flex-column align-items-center">
+                    <div class="mb-3 d-flex align-items-center justify-content-center" style="height: 60px;">
+                        <img src="{% static 'img/icons/pessoas.svg' %}" alt="Atendimento Especializado" style="max-height: 52px; width: auto;">
                     </div>
-                    <h5 class="fw-bold text-uppercase mb-0" style="font-size: 1.05rem; letter-spacing: 1.5px; color: #ffffff; line-height: 1.3;">Tudo em<br>um Só Lugar</h5>
+                    <h5 class="fw-bold mb-2" style="font-size: 1.1rem; color: #2E2A28;">Atendimento Especializado</h5>
+                    <p class="text-muted small mb-0" style="line-height: 1.5; max-width: 250px;">Profissionais diretos e focados em ajudar no seu projeto.</p>
                 </div>
             </div>
         </div>
