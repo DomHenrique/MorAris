@@ -327,3 +327,50 @@ footer a:hover {
         box-shadow: 0 4px 28px rgba(37, 211, 102, 0.70), 0 0 0 10px rgba(37, 211, 102, 0.15);
     }
 }
+
+/* Mobile Touch Carousel for Featured Products (Option 2) */
+@media (max-width: 767.98px) {
+    .product-carousel-mobile {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 1rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .product-carousel-mobile::-webkit-scrollbar {
+        display: none;
+    }
+
+    .product-carousel-item {
+        flex: 0 0 78% !important;
+        max-width: 78% !important;
+        scroll-snap-align: start;
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+
+    .product-card-img {
+        height: 240px;
+        object-fit: cover;
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .product-card-img {
+        height: 260px;
+        object-fit: cover;
+        width: 100%;
+        transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .product-card-img {
+        transform: scale(1.05);
+    }
+}

@@ -240,32 +240,32 @@
 <!-- Featured Products -->
 {% if featured_products %}
 <section class="py-5">
-    <div class="container py-5">
-        <div class="text-center mb-5">
+    <div class="container py-4">
+        <div class="text-center mb-4 mb-md-5">
             <h2 class="display-font display-6">{{ featured_title }}</h2>
             {% if featured_subtitle %}
-            <p class="lead text-muted mt-3">{{ featured_subtitle }}</p>
+            <p class="lead text-muted mt-2 mt-md-3" style="font-size: 1rem;">{{ featured_subtitle }}</p>
             {% endif %}
         </div>
         
-        <div class="row g-4">
+        <div class="row g-4 product-carousel-mobile">
             {% for product in featured_products %}
-            <div class="col-md-6 col-lg-3">
-                <div class="card product-card h-100">
-                    <a href="{{ product.get_absolute_url }}">
+            <div class="col-md-6 col-lg-3 product-carousel-item">
+                <div class="card product-card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                    <a href="{{ product.get_absolute_url }}" class="d-block overflow-hidden">
                         <picture>
                             {% if product.mobile_image %}
                             <source media="(max-width: 768px)" srcset="{{ product.mobile_image.url }}">
                             {% endif %}
-                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                            <img src="{{ product.image.url }}" class="card-img-top product-card-img" alt="{{ product.name }}">
                         </picture>
                     </a>
-                    <div class="card-body text-center">
+                    <div class="card-body text-center p-3">
                         {% if product.category %}
-                        <div class="product-category">{{ product.category.name }}</div>
+                        <div class="product-category mb-1" style="font-size: 0.75rem; color: #6e4d38; font-weight: 700; letter-spacing: 1px;">{{ product.category.name }}</div>
                         {% endif %}
-                        <h5 class="product-title mt-2">
-                            <a href="{{ product.get_absolute_url }}" class="text-decoration-none text-dark">{{ product.name }}</a>
+                        <h5 class="product-title m-0" style="font-size: 1.05rem;">
+                            <a href="{{ product.get_absolute_url }}" class="text-decoration-none text-dark fw-bold">{{ product.name }}</a>
                         </h5>
                     </div>
                 </div>
@@ -273,8 +273,8 @@
             {% endfor %}
         </div>
         
-        <div class="text-center mt-5">
-            <a href="{% url 'core:product_list' %}" class="btn btn-outline-custom">Ver Todas as Coleções</a>
+        <div class="text-center mt-4 mt-md-5">
+            <a href="{% url 'core:product_list' %}" class="btn btn-outline-custom rounded-pill px-4">Ver Todas as Coleções</a>
         </div>
     </div>
 </section>
