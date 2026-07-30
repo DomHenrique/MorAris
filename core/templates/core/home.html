@@ -9,12 +9,14 @@
     <div class="carousel-inner">
         {% for banner in banners %}
         <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            {% if banner.link and not banner.title and not banner.subtitle %}<a href="{{ banner.link }}">{% endif %}
             <picture>
                 {% if banner.mobile_image %}
                 <source media="(max-width: 768px)" srcset="{{ banner.mobile_image.url }}">
                 {% endif %}
-                <img src="{{ banner.image.url }}" alt="{{ banner.title|default:'Banner' }}">
+                <img src="{{ banner.image.url }}" alt="{{ banner.title|default:'Banner MorARIs' }}">
             </picture>
+            {% if banner.link and not banner.title and not banner.subtitle %}</a>{% endif %}
             
             {% if banner.title or banner.subtitle %}
             <div class="carousel-caption d-flex align-items-center justify-content-center h-100 pb-0">

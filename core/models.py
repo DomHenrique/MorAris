@@ -59,8 +59,6 @@ class Banner(models.Model):
 
     def clean(self):
         super().clean()
-        if not self.title and not self.link:
-            raise ValidationError({'link': 'O link é OBRIGATÓRIO quando o banner não possui título.'})
 
     class Meta:
         verbose_name = "Banner"
