@@ -12,7 +12,7 @@ class ProductImageInline(AdminMediaMixin, admin.TabularInline):
     model = ProductImage
     extra = 1
     readonly_fields = ('image_thumbnail',)
-    fields = ('image_thumbnail', 'image', 'alt_text', 'order')
+    fields = ('image_thumbnail', 'image', 'mobile_image', 'order')
 
     def image_thumbnail(self, obj):
         if obj.image:

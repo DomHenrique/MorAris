@@ -1,5 +1,22 @@
 /* Custom Django Admin Styles for MorARIs */
 
+/* Force table cells to allow overflow for zoom effect */
+#result_list td,
+#result_list th,
+.inline-related td,
+.inline-related th,
+.djn-items td,
+.djn-items th {
+    overflow: visible !important;
+    position: relative;
+}
+
+#result_list,
+#result_list table,
+.inline-related table {
+    overflow: visible !important;
+}
+
 /* Thumbnail Base Styling */
 .admin-thumb-hover {
     height: 50px;
@@ -8,7 +25,7 @@
     border-radius: 6px;
     border: 1px solid rgba(0, 0, 0, 0.12);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.25s ease;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     vertical-align: middle;
     position: relative;
@@ -19,8 +36,9 @@
 .admin-thumb-hover:hover {
     transform: scale(3.5);
     z-index: 9999 !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
     border-color: #6e4d38;
+    position: relative;
 }
 
 /* Inline Gallery Thumbnail styling */
@@ -34,11 +52,13 @@
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
     vertical-align: middle;
+    position: relative;
+    z-index: 1;
 }
 
 .admin-inline-thumb:hover {
     transform: scale(3.2);
     z-index: 9999 !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
     border-color: #6e4d38;
 }
