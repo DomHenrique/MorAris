@@ -136,17 +136,18 @@ h1, h2, h3, h4, h5, h6, .display-font {
 
 /* Footer */
 footer {
-    background-color: var(--text-main);
+    background-color: #23201e;
     color: var(--background-color);
-    padding: 4rem 0 2rem;
+    padding: 3.5rem 0 2rem;
 }
 footer a {
-    color: var(--secondary-color);
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, opacity 0.3s ease;
 }
 footer a:hover {
-    color: var(--background-color);
+    color: #ffffff !important;
+    opacity: 1;
 }
 
 /* Infinite Marquee */
