@@ -157,9 +157,9 @@ footer a:hover {
     100% { transform: translateX(-50%); }
 }
 
-/* Seção de Números / Credibilidade (Orange Banner) */
+/* Seção de Números / Credibilidade (Brown Banner) */
 .stats-section {
-    background-color: #ff6600;
+    background-color: #6e4d38;
     color: #ffffff;
     padding: 2.25rem 0;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
