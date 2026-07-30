@@ -212,6 +212,16 @@ footer a:hover {
     filter: drop-shadow(0 2px 4px rgba(110, 77, 56, 0.15));
 }
 
+.category-icon-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #6e4d38;
+    text-transform: uppercase;
+    display: block;
+    line-height: 1.25;
+}
+
 /* Feature / Diferenciais Icons Dark Banner */
 .feature-icon:hover {
     transform: scale(1.08);
