@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-3140.139965,-3199.682775)">
+        <g id="CAMINHÃO-MORARIS" serif:id="CAMINHÃO MORARIS" transform="matrix(83.333333,0,0,83.333333,3140.139965,3199.682775)">
+            <rect x="0" y="0" width="12" height="12" style="fill:none;"/>
+            <g transform="matrix(0.003541,0,0,0.003541,6,5.996732)">
+                <g transform="matrix(1,0,0,1,-1422.222222,-1422.222222)">
+                    <g transform="matrix(118.518519,0,0,118.518519,0,0)">
+                        <path d="M18.5,5L17,5L17,4.5C17,2.58 15.42,1 13.5,1L3.5,1C1.58,1 -0,2.58 0,4.5L0,20L3.058,20C3.021,20.164 3.002,20.332 3,20.5C3,21.871 4.129,23 5.5,23C6.871,23 8,21.871 8,20.5C7.998,20.332 7.979,20.164 7.942,20L16.058,20C16.021,20.164 16.002,20.332 16,20.5C16,21.871 17.129,23 18.5,23C19.871,23 21,21.871 21,20.5C20.998,20.332 20.979,20.164 20.942,20L24,20L24,10.5C23.996,7.484 21.516,5.004 18.5,5ZM14,17L3,17L3,4.5C3,4.226 3.226,4 3.5,4L13.5,4C13.774,4 14,4.226 14,4.5L14,17ZM18.5,8C19.871,8 21,9.129 21,10.5L21,13L17,13L17,8L18.5,8Z" style="fill:rgb(110,77,56);fill-rule:nonzero;"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Torneira / Faucet -->
+  <path d="M12 2V6C12 7.10457 11.1046 8 10 8H9" stroke="#6e4d38" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12 2H15C16.1046 2 17 2.89543 17 4V6" stroke="#6e4d38" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Cuba / Basin -->
+  <path d="M4 11H20C20 15.4183 16.4183 19 12 19C7.58172 19 4 15.4183 4 11Z" stroke="#6e4d38" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Counter top -->
+  <line x1="2" y1="21" x2="22" y2="21" stroke="#6e4d38" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="6" y1="19" x2="6" y2="21" stroke="#6e4d38" stroke-width="1.8"/>
+  <line x1="18" y1="19" x2="18" y2="21" stroke="#6e4d38" stroke-width="1.8"/>
+</svg>

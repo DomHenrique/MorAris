@@ -197,3 +197,17 @@ footer a:hover {
         letter-spacing: 1px;
     }
 }
+
+/* Category SVG Iconography Strip */
+.category-icon-item {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.category-icon-item:hover {
+    transform: translateY(-4px);
+    opacity: 0.85;
+}
+
+.category-icon-item img {
+    filter: drop-shadow(0 2px 4px rgba(110, 77, 56, 0.15));
+}
