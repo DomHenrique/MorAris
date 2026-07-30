@@ -162,27 +162,6 @@
     </div>
 </section>
 
-<!-- Categories -->
-{% if categories %}
-<section class="py-5 bg-white">
-    <div class="container py-4">
-        <h2 class="display-font text-center mb-5">Explore Nossas Linhas</h2>
-        <div class="row g-4 justify-content-center">
-            {% for cat in categories %}
-            <div class="col-6 col-md-4 col-lg-3 text-center">
-                <a href="{{ cat.get_absolute_url }}" class="text-decoration-none">
-                    <div class="p-4 rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px; transition: transform 0.3s ease;">
-                        <span style="font-size: 2rem; color: var(--primary-color);">{% if cat.icon %}<i class="{{ cat.icon }}"></i>{% else %}✨{% endif %}</span>
-                    </div>
-                    <h5 class="text-dark">{{ cat.name }}</h5>
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-{% endif %}
-
 <!-- Featured Products -->
 {% if featured_products %}
 <section class="py-5">
