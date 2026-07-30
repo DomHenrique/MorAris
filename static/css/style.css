@@ -41,15 +41,29 @@ h1, h2, h3, h4, h5, h6, .display-font {
     opacity: 0.8;
 }
 
-/* Hero Carousel */
+/* Hero Carousel (Ajustado no Padrão Kastelo) */
 .hero-carousel .carousel-item {
-    height: 80vh;
+    height: 500px;
     min-height: 500px;
 }
 .hero-carousel img {
     object-fit: cover;
     height: 100%;
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    .hero-carousel .carousel-item {
+        height: 420px;
+        min-height: 420px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-carousel .carousel-item {
+        height: 360px;
+        min-height: 360px;
+    }
 }
 .hero-caption {
     background: rgba(247, 244, 239, 0.85);
