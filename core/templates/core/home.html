@@ -269,60 +269,74 @@
 {% endif %}
 
 
-<!-- Diferenciais -->
-<section class="py-5" style="background-color: var(--background-color);">
-    <div class="container py-5 text-center">
-        <h2 class="display-font mb-5">A Essência MorARIs</h2>
-        <div class="row g-5">
-            <!-- Curadoria Exclusiva -->
-            <div class="col-md-6 col-lg-3">
-                <div class="mb-4">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                    </svg>
+<!-- Diferenciais / A Essência MorARIs (Estilo Kastello Dark Banner) -->
+<section class="py-5" style="background-color: #1A1614; color: #ffffff;">
+    <div class="container py-4">
+        <!-- Linha Superior de Garantias -->
+        <div class="row g-4 justify-content-center align-items-center text-center pb-4 mb-4 border-bottom border-secondary border-opacity-25">
+            <div class="col-md-4 border-end-md border-secondary border-opacity-25">
+                <div class="d-flex align-items-center justify-content-center gap-3">
+                    <img src="{% static 'img/icons/qualidade-confianca.svg' %}" alt="Materiais de Qualidade" style="height: 38px; width: auto;">
+                    <span class="fw-bold text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px; color: #ffffff;">Materiais de Qualidade</span>
                 </div>
-                <h5 class="fw-bold mb-3">Curadoria Exclusiva</h5>
-                <p class="text-muted">Selecionamos criteriosamente as melhores marcas de revestimentos e acabamentos para o seu projeto.</p>
             </div>
-            
-            <!-- Consultoria Especializada -->
-            <div class="col-md-6 col-lg-3">
-                <div class="mb-4">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9" cy="7" r="4"></circle>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
+            <div class="col-md-4 border-end-md border-secondary border-opacity-25">
+                <div class="d-flex align-items-center justify-content-center gap-3">
+                    <img src="{% static 'img/icons/SELO MORARIS.svg' %}" alt="As Melhores Marcas" style="height: 38px; width: auto; filter: invert(48%) sepia(89%) saturate(2476%) hue-rotate(360deg) brightness(102%) contrast(106%);">
+                    <span class="fw-bold text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px; color: #ffffff;">As Melhores Marcas</span>
                 </div>
-                <h5 class="fw-bold mb-3">Consultoria Especializada</h5>
-                <p class="text-muted">Especialistas em design de interiores prontos para guiar você na materialização do seu lar.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center gap-3">
+                    <img src="{% static 'img/icons/tudo-em-um-so-lugar.svg' %}" alt="Estamos Com Você" style="height: 38px; width: auto;">
+                    <div class="text-start">
+                        <span class="fw-bold text-uppercase d-block" style="font-size: 0.78rem; letter-spacing: 1px; color: #ffffff; line-height: 1.2;">Do início ao fim,</span>
+                        <span class="fw-bold text-uppercase d-block" style="font-size: 0.78rem; letter-spacing: 1px; color: #ff7300; line-height: 1.2;">Estamos com você!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4 Pilares Principais -->
+        <div class="row g-4 text-center align-items-center">
+            <!-- 1. Entrega Rápida -->
+            <div class="col-6 col-lg-3 border-end-lg border-secondary border-opacity-25">
+                <div class="p-3 p-md-4 h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="mb-3">
+                        <img src="{% static 'img/icons/entrega-rapida.svg' %}" alt="Entrega Rápida" style="height: 68px; width: auto; transition: transform 0.3s ease;" class="feature-icon">
+                    </div>
+                    <h5 class="fw-bold text-uppercase mb-0" style="font-size: 1.05rem; letter-spacing: 1.5px; color: #ffffff; line-height: 1.3;">Entrega<br>Rápida</h5>
+                </div>
             </div>
 
-            <!-- Logística Cuidadosa -->
-            <div class="col-md-6 col-lg-3">
-                <div class="mb-4">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="1" y="3" width="15" height="13"></rect>
-                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
-                    </svg>
+            <!-- 2. Atendimento Especializado -->
+            <div class="col-6 col-lg-3 border-end-lg border-secondary border-opacity-25">
+                <div class="p-3 p-md-4 h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="mb-3">
+                        <img src="{% static 'img/icons/atendimento-especializado.svg' %}" alt="Atendimento Especializado" style="height: 68px; width: auto; transition: transform 0.3s ease;" class="feature-icon">
+                    </div>
+                    <h5 class="fw-bold text-uppercase mb-0" style="font-size: 1.05rem; letter-spacing: 1.5px; color: #ffffff; line-height: 1.3;">Atendimento<br>Especializado</h5>
                 </div>
-                <h5 class="fw-bold mb-3">Logística Cuidadosa</h5>
-                <p class="text-muted">Entrega segura e planejada, garantindo a integridade de materiais premium até a sua obra.</p>
             </div>
 
-            <!-- Design Atemporal -->
-            <div class="col-md-6 col-lg-3">
-                <div class="mb-4">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                    </svg>
+            <!-- 3. Qualidade e Confiança -->
+            <div class="col-6 col-lg-3 border-end-lg border-secondary border-opacity-25">
+                <div class="p-3 p-md-4 h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="mb-3">
+                        <img src="{% static 'img/icons/qualidade-confianca.svg' %}" alt="Qualidade e Confiança" style="height: 68px; width: auto; transition: transform 0.3s ease;" class="feature-icon">
+                    </div>
+                    <h5 class="fw-bold text-uppercase mb-0" style="font-size: 1.05rem; letter-spacing: 1.5px; color: #ffffff; line-height: 1.3;">Qualidade<br>e Confiança</h5>
                 </div>
-                <h5 class="fw-bold mb-3">Design Atemporal</h5>
-                <p class="text-muted">Peças sofisticadas com texturas orgânicas que transformam qualquer ambiente em um espaço acolhedor.</p>
+            </div>
+
+            <!-- 4. Tudo em um Só Lugar -->
+            <div class="col-6 col-lg-3">
+                <div class="p-3 p-md-4 h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="mb-3">
+                        <img src="{% static 'img/icons/tudo-em-um-so-lugar.svg' %}" alt="Tudo em um Só Lugar" style="height: 68px; width: auto; transition: transform 0.3s ease;" class="feature-icon">
+                    </div>
+                    <h5 class="fw-bold text-uppercase mb-0" style="font-size: 1.05rem; letter-spacing: 1.5px; color: #ffffff; line-height: 1.3;">Tudo em<br>um Só Lugar</h5>
+                </div>
             </div>
         </div>
     </div>

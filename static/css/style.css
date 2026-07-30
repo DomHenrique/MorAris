@@ -211,3 +211,20 @@ footer a:hover {
 .category-icon-item img {
     filter: drop-shadow(0 2px 4px rgba(110, 77, 56, 0.15));
 }
+
+/* Feature / Diferenciais Icons Dark Banner */
+.feature-icon:hover {
+    transform: scale(1.08);
+}
+
+@media (min-width: 992px) {
+    .border-end-lg {
+        border-right: 1px solid rgba(255, 255, 255, 0.15) !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .border-end-md {
+        border-right: 1px solid rgba(255, 255, 255, 0.15) !important;
+    }
+}
