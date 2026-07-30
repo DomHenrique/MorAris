@@ -203,22 +203,36 @@
     </div>
 </section>
 
-<!-- Seção Apresentação / Fachada -->
+<!-- Seção Apresentação / Fachada & Sobre Nós -->
 <section class="py-5">
     <div class="container py-3">
-        <div class="row align-items-center g-4">
+        <div class="row align-items-center g-4 g-lg-5">
             <div class="col-lg-6">
-                <img src="{% static 'img/fachada-saoluiz.webp' %}" alt="Fachada MorARIs Revestimentos" class="img-fluid rounded-4 shadow-sm w-100" style="object-fit: cover; max-height: 440px;">
+                <div class="position-relative">
+                    <img src="{% static 'img/fachada-saoluiz.webp' %}" alt="Fachada MorARIs Revestimentos" class="img-fluid rounded-4 shadow-sm w-100" style="object-fit: cover; max-height: 480px;">
+                    <div class="position-absolute bottom-0 start-0 m-3 p-3 bg-white bg-opacity-95 rounded-3 shadow-sm d-none d-sm-flex align-items-center gap-3">
+                        <div class="rounded-circle p-2 d-flex align-items-center justify-content-center" style="background-color: rgba(110, 77, 56, 0.1); color: #6e4d38;">
+                            <i class="bi bi-geo-alt-fill fs-4"></i>
+                        </div>
+                        <div>
+                            <span class="fw-bold d-block text-dark" style="font-size: 0.85rem;">Av. Salvador, 520 - Centro</span>
+                            <span class="text-muted" style="font-size: 0.78rem;">Tupandi • Rio Grande do Sul</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-6">
-                <div class="p-4 p-md-5 rounded-4" style="background-color: #EFEAE4;">
+                <div class="p-4 p-md-5 rounded-4 shadow-sm" style="background-color: #EFEAE4;">
                     <p class="text-uppercase mb-2" style="color: #6e4d38; letter-spacing: 2px; font-size: 0.78rem; font-weight: 700;">MorARIs Revestimentos • Grupo Madeireira São Luiz</p>
-                    <h3 class="display-font fw-bold mb-3" style="color: #2E2A28; font-size: 1.7rem;">Tradição em Qualidade e Paixão por Detalhes</h3>
+                    <h3 class="display-font fw-bold mb-3" style="color: #2E2A28; font-size: 1.8rem;">Tradição em Qualidade e Paixão por Detalhes</h3>
                     <p class="mb-3 text-dark opacity-75" style="font-size: 0.98rem; line-height: 1.65;">
-                        A <strong>MorARIs Revestimentos</strong> é a loja exclusiva de acabamentos e revestimentos nobres do grupo <strong>Madeireira São Luiz</strong>, situada na Av. Salvador, no centro de Tupandi/RS.
+                        A <strong>MorARIs Revestimentos</strong> é a loja exclusiva de acabamentos nobres do grupo <strong>Madeireira São Luiz</strong>, trazendo para Tupandi e todo o Vale do Caí um novo conceito em sofisticação, curadoria de marcas e atendimento consultivo.
+                    </p>
+                    <p class="mb-3 text-muted" style="font-size: 0.93rem; line-height: 1.65;">
+                        Em nosso showroom na Av. Salvador, reunimos uma seleção rigorosa dos melhores porcelanatos, revestimentos cerâmicos, louças sanitárias, metais e soluções em iluminação para projetos residenciais e comerciais de alto padrão.
                     </p>
                     <p class="mb-0 text-muted" style="font-size: 0.93rem; line-height: 1.65;">
-                        Oferecemos a clientes, arquitetos, engenheiros e designers uma curadoria criteriosamente selecionada de porcelanatos, revestimentos cerâmicos, metais sanitários, louças e iluminação. Nossa missão é guiar você em cada fase do seu projeto com atendimento técnico consultivo, agilidade logística e excelência garantida.
+                        Mais do que fornecer materiais, nossa missão é caminhar ao seu lado do início ao fim da obra, garantindo assessoria técnica especializada, agilidade na entrega e a segurança de quem conta com a tradição de mais de 20 anos de mercado.
                     </p>
                 </div>
             </div>
@@ -264,25 +278,6 @@
         
         <div class="text-center mt-5">
             <a href="{% url 'core:product_list' %}" class="btn btn-outline-custom">Ver Todas as Coleções</a>
-        </div>
-    </div>
-</section>
-{% endif %}
-
-<!-- Sobre Nós -->
-{% if sobre_empresa %}
-<section class="py-5 bg-white">
-    <div class="container py-5">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-                {% if sobre_empresa.imagem_loja %}
-                <img src="{{ sobre_empresa.imagem_loja.url }}" alt="{{ sobre_empresa.titulo_secao }}" class="img-fluid rounded shadow-sm">
-                {% endif %}
-            </div>
-            <div class="col-lg-6">
-                <h2 class="display-font mb-4">{{ sobre_empresa.titulo_secao }}</h2>
-                <div class="text-muted lead" style="white-space: pre-line;">{{ sobre_empresa.texto }}</div>
-            </div>
         </div>
     </div>
 </section>
