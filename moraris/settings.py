@@ -195,7 +195,7 @@ JAZZMIN_SETTINGS = {
     "site_header": "MorARIs",
     "site_brand": "MorARIs Revestimentos",
     "welcome_sign": "Bem-vindo ao painel MorARIs",
-    "copyright": "MorARIs Revestimentos Ltda",
+    "copyright": "GRIDD Marketing 360",
     "use_google_fonts_cdn": True,
     "show_ui_builder": False,
     "custom_css": "admin/css/custom_admin.css",
