@@ -181,21 +181,47 @@ footer a:hover {
     opacity: 1;
 }
 
-/* Infinite Marquee */
+/* Infinite Marquee de Marcas */
 .marquee-container {
     overflow: hidden;
     white-space: nowrap;
     width: 100%;
+    position: relative;
+    padding: 0.5rem 0;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .marquee-track {
     display: inline-flex;
-    gap: 4rem;
-    animation: scroll-left 20s linear infinite;
+    align-items: center;
+    gap: 5rem;
+    animation: scroll-left 25s linear infinite;
+    will-change: transform;
 }
 
 .marquee-container:hover .marquee-track {
     animation-play-state: paused;
+}
+
+.brand-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 1rem;
+}
+
+.brand-item img {
+    max-height: 52px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.6);
+    transition: filter 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brand-item:hover img {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.08);
 }
 
 @keyframes scroll-left {
