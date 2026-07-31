@@ -7,6 +7,7 @@ class AdminMediaMixin:
         css = {
             'all': ('admin/css/custom_admin.css',)
         }
+        js = ('admin/js/image_popover.js',)
 
 class ProductImageInline(AdminMediaMixin, admin.TabularInline):
     model = ProductImage
