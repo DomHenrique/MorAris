@@ -198,18 +198,22 @@ JAZZMIN_SETTINGS = {
     "copyright": "MorARIs Revestimentos Ltda",
     "use_google_fonts_cdn": True,
     "show_ui_builder": False,
+    "custom_css": "admin/css/custom_admin.css",
+    "custom_js": "admin/js/image_popover.js",
     "icons": {
         "auth": "ri-shield-user-line",
         "auth.user": "ri-user-3-line",
         "auth.group": "ri-team-line",
-        "core.Product": "ri-stack-line",
-        "core.Category": "ri-folders-line",
-        "core.Campaign": "ri-megaphone-line",
-        "core.Banner": "ri-image-line",
-        "core.Testimonial": "ri-chat-quote-line",
-        "empresa.Unidade": "ri-store-2-line",
-        "empresa.SobreEmpresa": "ri-building-4-line",
-        "empresa.Marca": "ri-badge-line",
+        "core": "ri-apps-2-line",
+        "core.product": "ri-stack-line",
+        "core.category": "ri-folders-line",
+        "core.campaign": "ri-megaphone-line",
+        "core.banner": "ri-image-line",
+        "core.testimonial": "ri-chat-quote-line",
+        "empresa": "ri-building-line",
+        "empresa.unidade": "ri-store-2-line",
+        "empresa.sobreempresa": "ri-building-4-line",
+        "empresa.marca": "ri-badge-line",
     },
     "default_icon_parents": "ri-folder-open-line",
     "default_icon_children": "ri-checkbox-blank-circle-line",
@@ -217,5 +221,8 @@ JAZZMIN_SETTINGS = {
 
 JAZZMIN_UI_TWEAKS = {
     "theme": "darkly",
+    "navbar": "navbar-dark bg-dark",
+    "sidebar": "sidebar-dark-primary",
 }
+
 

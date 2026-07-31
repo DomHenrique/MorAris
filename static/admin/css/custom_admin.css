@@ -6,6 +6,14 @@
 @import url('https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+/* Force RemixIcon font family on any element with ri- class */
+[class*="ri-"] {
+    font-family: 'remixicon' !important;
+    font-style: normal !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
 :root {
     /* Brand Colors - GRIDD MKT 360 */
     --gridd-primary: #FF7A1A;
@@ -33,53 +41,47 @@
 }
 
 /* Base resets & typography */
-body, .wrapper, .main-header, .content-wrapper, select, input, button {
+html, body, .wrapper, .main-header, .content-wrapper, select, input, button, table {
     font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 }
 
-body.theme-darkly, body {
+body,
+.wrapper,
+.content-wrapper,
+.content-wrapper > .content,
+.main-footer {
     background-color: var(--gridd-navy-deep) !important;
+    background: var(--gridd-navy-deep) !important;
     color: var(--gridd-text-main) !important;
 }
 
+.main-footer {
+    border-top: 1px solid var(--gridd-glass-border) !important;
+    font-size: 0.8rem !important;
+    color: var(--gridd-text-muted) !important;
+}
+
 /* =========================================================================
-   Top Navigation Header
+   Top Navigation Header (Force Dark Navy)
    ========================================================================= */
 
-.main-header {
-    background: rgba(10, 10, 50, 0.85) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    backdrop-filter: blur(12px) !important;
+.main-header,
+.main-header.navbar,
+.navbar-white,
+.navbar-light,
+.navbar-dark,
+.bg-white {
+    background-color: var(--gridd-navy-dark) !important;
+    background: var(--gridd-navy-dark) !important;
     border-bottom: 1px solid var(--gridd-glass-border) !important;
 }
 
-.main-header .navbar-brand {
-    font-weight: 800 !important;
-    letter-spacing: -0.02em;
-    color: var(--gridd-text-main) !important;
-}
-
-.main-header .nav-link {
-    color: var(--gridd-text-muted) !important;
-    transition: color 0.2s ease !important;
-}
-
-.main-header .nav-link:hover {
-    color: var(--gridd-primary) !important;
-}
-
-/* =========================================================================
-   Sidebar Navigation (Vertical Icon + Stacked Text Layout)
-   ========================================================================= */
-
-.main-sidebar {
+.brand-link,
+.brand-link.bg-white,
+.brand-link.navbar-white {
+    background-color: var(--gridd-navy-dark) !important;
     background: var(--gridd-navy-dark) !important;
-    border-right: 1px solid var(--gridd-glass-border) !important;
-    box-shadow: 4px 0 25px rgba(0, 0, 0, 0.4) !important;
-}
-
-.brand-link {
-    background: rgba(10, 10, 50, 0.9) !important;
+    color: var(--gridd-text-main) !important;
     border-bottom: 1px solid var(--gridd-glass-border) !important;
     padding: 1rem 1.25rem !important;
 }
@@ -92,44 +94,75 @@ body.theme-darkly, body {
     -webkit-text-fill-color: transparent;
 }
 
-/* Sidebar Menu Items - Vertical Stack Style */
+.main-header .nav-link,
+.main-header .navbar-nav .nav-link {
+    color: var(--gridd-text-muted) !important;
+    transition: color 0.2s ease !important;
+}
+
+.main-header .nav-link:hover,
+.main-header .navbar-nav .nav-link:hover {
+    color: var(--gridd-primary) !important;
+}
+
+/* =========================================================================
+   Sidebar Navigation
+   ========================================================================= */
+
+.main-sidebar,
+.sidebar,
+.sidebar-dark-primary {
+    background: var(--gridd-navy-dark) !important;
+    background-color: var(--gridd-navy-dark) !important;
+    border-right: 1px solid var(--gridd-glass-border) !important;
+    box-shadow: 4px 0 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+.user-panel {
+    border-bottom: 1px solid var(--gridd-glass-border) !important;
+    padding: 0.8rem 1rem !important;
+}
+
+.user-panel .info a {
+    color: var(--gridd-text-main) !important;
+    font-weight: 600 !important;
+}
+
+/* Sidebar Menu Items */
 .nav-sidebar .nav-item {
-    margin: 6px 10px !important;
+    margin: 4px 10px !important;
 }
 
 .nav-sidebar .nav-link {
     display: flex !important;
-    flex-direction: column !important;
     align-items: center !important;
-    justify-content: center !important;
-    padding: 12px 8px !important;
-    border-radius: 12px !important;
+    gap: 10px !important;
+    padding: 10px 14px !important;
+    border-radius: 10px !important;
     color: var(--gridd-text-muted) !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    text-align: center !important;
+    transition: all 0.25s ease !important;
 }
 
 .nav-sidebar .nav-link i, 
 .nav-sidebar .nav-link .nav-icon {
-    font-size: 1.5rem !important;
-    margin-right: 0 !important;
-    margin-bottom: 4px !important;
-    transition: transform 0.3s ease, color 0.3s ease !important;
+    font-size: 1.25rem !important;
+    width: 24px !important;
+    text-align: center !important;
+    margin-right: 6px !important;
+    transition: transform 0.25s ease, color 0.25s ease !important;
 }
 
 .nav-sidebar .nav-link p {
-    font-size: 0.72rem !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.06em !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
     margin: 0 !important;
 }
 
 /* Hover State */
 .nav-sidebar .nav-link:hover {
-    background: rgba(255, 122, 26, 0.1) !important;
+    background: rgba(255, 122, 26, 0.12) !important;
     color: #FFFFFF !important;
-    transform: translateY(-2px);
+    transform: translateX(4px);
 }
 
 .nav-sidebar .nav-link:hover i {
@@ -138,9 +171,12 @@ body.theme-darkly, body {
 }
 
 /* Active State - Glowing Orange Pill */
+.nav-pills .nav-link.active,
 .nav-sidebar .nav-link.active,
-.nav-sidebar .nav-item.menu-open > .nav-link {
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link:focus {
     background: var(--gridd-primary-gradient) !important;
+    background-color: var(--gridd-primary) !important;
     color: #FFFFFF !important;
     box-shadow: 0 4px 18px rgba(255, 122, 26, 0.45) !important;
 }
@@ -151,16 +187,16 @@ body.theme-darkly, body {
 }
 
 .nav-sidebar .nav-header {
-    font-size: 0.68rem !important;
+    font-size: 0.7rem !important;
     font-weight: 800 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.12em !important;
+    letter-spacing: 0.1em !important;
     color: var(--gridd-primary) !important;
     padding: 1.2rem 1rem 0.4rem 1rem !important;
 }
 
 /* =========================================================================
-   Content Area & Glassmorphism Cards
+   Content Area & Cards
    ========================================================================= */
 
 .content-wrapper {
@@ -175,19 +211,26 @@ body.theme-darkly, body {
     color: var(--gridd-text-main) !important;
 }
 
-.card {
+.breadcrumb a {
+    color: var(--gridd-primary) !important;
+}
+
+.card,
+.card-body,
+.card-header,
+#changelist,
+.module {
     background: var(--gridd-glass-bg) !important;
     -webkit-backdrop-filter: blur(14px) !important;
     backdrop-filter: blur(14px) !important;
     border: 1px solid var(--gridd-glass-border) !important;
-    border-radius: 16px !important;
+    border-radius: 14px !important;
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3) !important;
     margin-bottom: 1.5rem !important;
-    overflow: hidden !important;
 }
 
 .card-header {
-    background: rgba(10, 10, 50, 0.6) !important;
+    background: rgba(10, 10, 50, 0.7) !important;
     border-bottom: 1px solid var(--gridd-glass-border) !important;
     padding: 1rem 1.25rem !important;
     font-weight: 700 !important;
@@ -202,14 +245,17 @@ body.theme-darkly, body {
    Tables (Change List View)
    ========================================================================= */
 
-.table {
+.table,
+.table-striped,
+.table-hover {
     color: var(--gridd-text-main) !important;
+    background: transparent !important;
     margin-bottom: 0 !important;
 }
 
 .table thead th {
-    background: rgba(10, 10, 50, 0.9) !important;
-    color: var(--gridd-text-muted) !important;
+    background: rgba(10, 10, 50, 0.95) !important;
+    color: var(--gridd-primary) !important;
     font-size: 0.78rem !important;
     font-weight: 700 !important;
     text-transform: uppercase !important;
@@ -219,42 +265,63 @@ body.theme-darkly, body {
 }
 
 .table tbody tr {
-    transition: background 0.2s ease, border-left 0.2s ease !important;
+    background: transparent !important;
+    transition: background 0.2s ease !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
 }
 
 .table tbody tr:hover {
-    background: rgba(255, 122, 26, 0.06) !important;
+    background: rgba(255, 122, 26, 0.08) !important;
 }
 
 .table td {
     padding: 0.85rem 1rem !important;
     vertical-align: middle !important;
     border-top: none !important;
+    color: #E2E4EB !important;
+}
+
+.table td a {
+    color: var(--gridd-text-main) !important;
+    font-weight: 600 !important;
+    transition: color 0.2s ease !important;
+}
+
+.table td a:hover {
+    color: var(--gridd-primary) !important;
+    text-decoration: none !important;
 }
 
 /* =========================================================================
    Buttons & Form Controls
    ========================================================================= */
 
-/* Primary Action Buttons */
+/* Action & Add Buttons (Gridd Laranja Gradient) */
 .btn-primary,
+.btn-success,
+a.btn-primary,
+a.btn-success,
 .button.default,
 input[type="submit"].default,
-.submit-row input[type="submit"] {
+.submit-row input[type="submit"],
+.btn-info,
+a.btn-info {
     background: var(--gridd-primary-gradient) !important;
+    background-color: var(--gridd-primary) !important;
     border: none !important;
     color: #FFFFFF !important;
     font-weight: 700 !important;
-    border-radius: 10px !important;
-    padding: 0.6rem 1.25rem !important;
+    border-radius: 8px !important;
+    padding: 0.55rem 1.2rem !important;
     box-shadow: 0 4px 15px rgba(255, 122, 26, 0.35) !important;
     transition: all 0.3s ease !important;
     cursor: pointer !important;
 }
 
 .btn-primary:hover,
-.button.default:hover,
+.btn-success:hover,
+a.btn-primary:hover,
+a.btn-success:hover,
 input[type="submit"].default:hover,
 .submit-row input[type="submit"]:hover {
     transform: translateY(-2px) !important;
@@ -262,42 +329,51 @@ input[type="submit"].default:hover,
     opacity: 0.95 !important;
 }
 
-/* Secondary / Outline Buttons */
+/* Secondary / Search Filter Buttons */
 .btn-secondary,
 .btn-default,
-.button {
-    background: rgba(255, 255, 255, 0.05) !important;
+.button,
+input[type="submit"] {
+    background: rgba(255, 255, 255, 0.08) !important;
     border: 1px solid var(--gridd-glass-border) !important;
     color: var(--gridd-text-main) !important;
-    border-radius: 10px !important;
-    padding: 0.55rem 1.1rem !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
     font-weight: 600 !important;
-    transition: all 0.3s ease !important;
+    transition: all 0.25s ease !important;
 }
 
 .btn-secondary:hover,
 .btn-default:hover,
 .button:hover {
-    background: rgba(255, 122, 26, 0.15) !important;
+    background: rgba(255, 122, 26, 0.2) !important;
     border-color: var(--gridd-primary) !important;
     color: #FFFFFF !important;
 }
 
-/* Form Inputs & Selects */
+/* Form Inputs, Search & Dropdown Selects */
 input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="number"],
 input[type="url"],
+input[type="search"],
 textarea,
 select,
+.form-control,
 .select2-container--default .select2-selection--single {
-    background: rgba(10, 10, 50, 0.7) !important;
-    border: 1px solid var(--gridd-glass-border) !important;
-    color: var(--gridd-text-main) !important;
-    border-radius: 10px !important;
-    padding: 0.6rem 0.9rem !important;
+    background: rgba(10, 10, 50, 0.8) !important;
+    background-color: rgba(10, 10, 50, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #FFFFFF !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 0.85rem !important;
     transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+select option {
+    background-color: #0A0A32 !important;
+    color: #FFFFFF !important;
 }
 
 input[type="text"]:focus,
@@ -306,9 +382,10 @@ input[type="email"]:focus,
 input[type="number"]:focus,
 input[type="url"]:focus,
 textarea:focus,
-select:focus {
+select:focus,
+.form-control:focus {
     border-color: var(--gridd-primary) !important;
-    box-shadow: 0 0 0 3px rgba(255, 122, 26, 0.25) !important;
+    box-shadow: 0 0 0 3px rgba(255, 122, 26, 0.3) !important;
     outline: none !important;
 }
 
