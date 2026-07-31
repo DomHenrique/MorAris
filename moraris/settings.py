@@ -196,8 +196,26 @@ JAZZMIN_SETTINGS = {
     "site_brand": "MorARIs Revestimentos",
     "welcome_sign": "Bem-vindo ao painel MorARIs",
     "copyright": "MorARIs Revestimentos Ltda",
+    "use_google_fonts_cdn": True,
+    "show_ui_builder": False,
+    "icons": {
+        "auth": "ri-shield-user-line",
+        "auth.user": "ri-user-3-line",
+        "auth.group": "ri-team-line",
+        "core.Product": "ri-stack-line",
+        "core.Category": "ri-folders-line",
+        "core.Campaign": "ri-megaphone-line",
+        "core.Banner": "ri-image-line",
+        "core.Testimonial": "ri-chat-quote-line",
+        "empresa.Unidade": "ri-store-2-line",
+        "empresa.SobreEmpresa": "ri-building-4-line",
+        "empresa.Marca": "ri-badge-line",
+    },
+    "default_icon_parents": "ri-folder-open-line",
+    "default_icon_children": "ri-checkbox-blank-circle-line",
 }
 
 JAZZMIN_UI_TWEAKS = {
     "theme": "darkly",
 }
+

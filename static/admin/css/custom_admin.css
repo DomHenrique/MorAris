@@ -1,44 +1,386 @@
-/* Custom Django Admin Styles for MorARIs */
+/* =========================================================================
+   GRIDD MKT 360 - Custom Django Admin Theme (MorARIs)
+   ========================================================================= */
 
-/* Thumbnail Base Styling */
+/* Imports */
+@import url('https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Brand Colors - GRIDD MKT 360 */
+    --gridd-primary: #FF7A1A;
+    --gridd-primary-end: #FF512F;
+    --gridd-primary-gradient: linear-gradient(135deg, #FF7A1A 0%, #FF512F 100%);
+    --gridd-navy-dark: #0A0A32;
+    --gridd-navy-deep: #00000A;
+    --gridd-navy-mid: #14145A;
+    --gridd-navy-light: #1E1E8C;
+    
+    /* Interface & Glassmorphism */
+    --gridd-glass-bg: rgba(20, 20, 90, 0.45);
+    --gridd-glass-border: rgba(255, 255, 255, 0.08);
+    --gridd-text-main: #FFFFFF;
+    --gridd-text-muted: #A0A5B5;
+    --gridd-text-dim: #6C7284;
+    
+    /* Status Colors */
+    --gridd-success: #10B981;
+    --gridd-success-bg: rgba(16, 185, 129, 0.15);
+    --gridd-warning: #F59E0B;
+    --gridd-warning-bg: rgba(245, 158, 11, 0.15);
+    --gridd-danger: #EF4444;
+    --gridd-danger-bg: rgba(239, 68, 68, 0.15);
+}
+
+/* Base resets & typography */
+body, .wrapper, .main-header, .content-wrapper, select, input, button {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+}
+
+body.theme-darkly, body {
+    background-color: var(--gridd-navy-deep) !important;
+    color: var(--gridd-text-main) !important;
+}
+
+/* =========================================================================
+   Top Navigation Header
+   ========================================================================= */
+
+.main-header {
+    background: rgba(10, 10, 50, 0.85) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid var(--gridd-glass-border) !important;
+}
+
+.main-header .navbar-brand {
+    font-weight: 800 !important;
+    letter-spacing: -0.02em;
+    color: var(--gridd-text-main) !important;
+}
+
+.main-header .nav-link {
+    color: var(--gridd-text-muted) !important;
+    transition: color 0.2s ease !important;
+}
+
+.main-header .nav-link:hover {
+    color: var(--gridd-primary) !important;
+}
+
+/* =========================================================================
+   Sidebar Navigation (Vertical Icon + Stacked Text Layout)
+   ========================================================================= */
+
+.main-sidebar {
+    background: var(--gridd-navy-dark) !important;
+    border-right: 1px solid var(--gridd-glass-border) !important;
+    box-shadow: 4px 0 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+.brand-link {
+    background: rgba(10, 10, 50, 0.9) !important;
+    border-bottom: 1px solid var(--gridd-glass-border) !important;
+    padding: 1rem 1.25rem !important;
+}
+
+.brand-link .brand-text {
+    font-weight: 800 !important;
+    font-size: 1.1rem !important;
+    background: var(--gridd-primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Sidebar Menu Items - Vertical Stack Style */
+.nav-sidebar .nav-item {
+    margin: 6px 10px !important;
+}
+
+.nav-sidebar .nav-link {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 12px 8px !important;
+    border-radius: 12px !important;
+    color: var(--gridd-text-muted) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-align: center !important;
+}
+
+.nav-sidebar .nav-link i, 
+.nav-sidebar .nav-link .nav-icon {
+    font-size: 1.5rem !important;
+    margin-right: 0 !important;
+    margin-bottom: 4px !important;
+    transition: transform 0.3s ease, color 0.3s ease !important;
+}
+
+.nav-sidebar .nav-link p {
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    margin: 0 !important;
+}
+
+/* Hover State */
+.nav-sidebar .nav-link:hover {
+    background: rgba(255, 122, 26, 0.1) !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+}
+
+.nav-sidebar .nav-link:hover i {
+    color: var(--gridd-primary) !important;
+    transform: scale(1.15);
+}
+
+/* Active State - Glowing Orange Pill */
+.nav-sidebar .nav-link.active,
+.nav-sidebar .nav-item.menu-open > .nav-link {
+    background: var(--gridd-primary-gradient) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 18px rgba(255, 122, 26, 0.45) !important;
+}
+
+.nav-sidebar .nav-link.active i,
+.nav-sidebar .nav-link.active p {
+    color: #FFFFFF !important;
+}
+
+.nav-sidebar .nav-header {
+    font-size: 0.68rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    color: var(--gridd-primary) !important;
+    padding: 1.2rem 1rem 0.4rem 1rem !important;
+}
+
+/* =========================================================================
+   Content Area & Glassmorphism Cards
+   ========================================================================= */
+
+.content-wrapper {
+    background: var(--gridd-navy-deep) !important;
+    padding: 1.5rem !important;
+}
+
+.content-header h1 {
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    font-size: 1.75rem !important;
+    color: var(--gridd-text-main) !important;
+}
+
+.card {
+    background: var(--gridd-glass-bg) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    backdrop-filter: blur(14px) !important;
+    border: 1px solid var(--gridd-glass-border) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3) !important;
+    margin-bottom: 1.5rem !important;
+    overflow: hidden !important;
+}
+
+.card-header {
+    background: rgba(10, 10, 50, 0.6) !important;
+    border-bottom: 1px solid var(--gridd-glass-border) !important;
+    padding: 1rem 1.25rem !important;
+    font-weight: 700 !important;
+}
+
+.card-title {
+    font-weight: 700 !important;
+    color: var(--gridd-text-main) !important;
+}
+
+/* =========================================================================
+   Tables (Change List View)
+   ========================================================================= */
+
+.table {
+    color: var(--gridd-text-main) !important;
+    margin-bottom: 0 !important;
+}
+
+.table thead th {
+    background: rgba(10, 10, 50, 0.9) !important;
+    color: var(--gridd-text-muted) !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    border-bottom: 1px solid var(--gridd-glass-border) !important;
+    padding: 0.9rem 1rem !important;
+}
+
+.table tbody tr {
+    transition: background 0.2s ease, border-left 0.2s ease !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 122, 26, 0.06) !important;
+}
+
+.table td {
+    padding: 0.85rem 1rem !important;
+    vertical-align: middle !important;
+    border-top: none !important;
+}
+
+/* =========================================================================
+   Buttons & Form Controls
+   ========================================================================= */
+
+/* Primary Action Buttons */
+.btn-primary,
+.button.default,
+input[type="submit"].default,
+.submit-row input[type="submit"] {
+    background: var(--gridd-primary-gradient) !important;
+    border: none !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    border-radius: 10px !important;
+    padding: 0.6rem 1.25rem !important;
+    box-shadow: 0 4px 15px rgba(255, 122, 26, 0.35) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+}
+
+.btn-primary:hover,
+.button.default:hover,
+input[type="submit"].default:hover,
+.submit-row input[type="submit"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(255, 122, 26, 0.5) !important;
+    opacity: 0.95 !important;
+}
+
+/* Secondary / Outline Buttons */
+.btn-secondary,
+.btn-default,
+.button {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--gridd-glass-border) !important;
+    color: var(--gridd-text-main) !important;
+    border-radius: 10px !important;
+    padding: 0.55rem 1.1rem !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-secondary:hover,
+.btn-default:hover,
+.button:hover {
+    background: rgba(255, 122, 26, 0.15) !important;
+    border-color: var(--gridd-primary) !important;
+    color: #FFFFFF !important;
+}
+
+/* Form Inputs & Selects */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="url"],
+textarea,
+select,
+.select2-container--default .select2-selection--single {
+    background: rgba(10, 10, 50, 0.7) !important;
+    border: 1px solid var(--gridd-glass-border) !important;
+    color: var(--gridd-text-main) !important;
+    border-radius: 10px !important;
+    padding: 0.6rem 0.9rem !important;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--gridd-primary) !important;
+    box-shadow: 0 0 0 3px rgba(255, 122, 26, 0.25) !important;
+    outline: none !important;
+}
+
+/* Badges & Status Pills */
+.badge, .badge-success, .badge-warning, .badge-danger, .badge-info {
+    border-radius: 50px !important;
+    padding: 0.35rem 0.8rem !important;
+    font-weight: 700 !important;
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+}
+
+.badge-success {
+    background: var(--gridd-success-bg) !important;
+    color: var(--gridd-success) !important;
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+}
+
+.badge-warning {
+    background: var(--gridd-warning-bg) !important;
+    color: var(--gridd-warning) !important;
+    border: 1px solid rgba(245, 158, 11, 0.3) !important;
+}
+
+.badge-danger {
+    background: var(--gridd-danger-bg) !important;
+    color: var(--gridd-danger) !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+/* =========================================================================
+   Image Hover Popover & Thumbnail Mixins (Preserved)
+   ========================================================================= */
+
 .admin-thumb-hover {
     height: 48px;
     max-width: 120px;
     object-fit: cover;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transition: all 0.2s ease;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.25s ease;
     cursor: zoom-in;
     vertical-align: middle;
 }
 
 .admin-thumb-hover:hover {
-    border-color: #6e4d38;
-    box-shadow: 0 0 0 3px rgba(110, 77, 56, 0.35);
-    opacity: 0.95;
+    border-color: var(--gridd-primary);
+    box-shadow: 0 0 0 3px rgba(255, 122, 26, 0.4);
+    transform: scale(1.04);
 }
 
-/* Inline Gallery Thumbnail styling */
 .admin-inline-thumb {
     height: 56px;
     width: 56px;
     object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid #e2dcd5;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.25s ease;
     cursor: zoom-in;
     vertical-align: middle;
 }
 
 .admin-inline-thumb:hover {
-    border-color: #6e4d38;
-    box-shadow: 0 0 0 3px rgba(110, 77, 56, 0.35);
-    opacity: 0.95;
+    border-color: var(--gridd-primary);
+    box-shadow: 0 0 0 3px rgba(255, 122, 26, 0.4);
+    transform: scale(1.05);
 }
 
-/* Floating HD Popover Container (Outside Table Context) */
+/* Floating HD Popover Container */
 #admin-image-popover {
     position: fixed;
     z-index: 999999 !important;
@@ -47,13 +389,13 @@
     visibility: hidden;
     transition: opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1), transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
     transform: scale(0.92);
-    background: rgba(24, 22, 20, 0.94);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1.5px solid rgba(255, 255, 255, 0.18);
-    border-radius: 14px;
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(110, 77, 56, 0.4);
-    padding: 10px;
+    background: rgba(10, 10, 50, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 122, 26, 0.3);
+    padding: 12px;
     max-width: 540px;
     box-sizing: border-box;
 }
@@ -70,17 +412,17 @@
     width: auto;
     height: auto;
     object-fit: contain;
-    border-radius: 10px;
+    border-radius: 12px;
     display: block;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
 #admin-popover-caption {
-    color: #f3ede7;
+    color: var(--gridd-text-main);
     font-size: 0.82rem;
-    font-weight: 600;
+    font-weight: 700;
     text-align: center;
-    padding-top: 8px;
+    padding-top: 10px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
