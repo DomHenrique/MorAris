@@ -200,6 +200,9 @@ JAZZMIN_SETTINGS = {
     "show_ui_builder": False,
     "custom_css": "admin/css/custom_admin.css",
     "custom_js": "admin/js/image_popover.js",
+    "login_logo": "img/gridd_logo.png",
+    "login_logo_dark": "img/gridd_logo.png",
+    "site_logo": "img/gridd_logo.png",
     "icons": {
         "auth": "ri-shield-user-line",
         "auth.user": "ri-user-3-line",

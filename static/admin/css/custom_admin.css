@@ -530,10 +530,16 @@ select:focus,
 
 .login-logo a {
   color: transparent !important;
+  font-size: 0 !important;
+  display: block !important;
+  text-decoration: none !important;
 }
 
 .login-logo img,
-.login-box .login-logo img {
+.login-box .login-logo img,
+.login-logo .brand-image,
+.login-logo .img-circle,
+.login-box .img-circle {
   max-height: 85px !important;
   max-width: 240px !important;
   width: auto !important;
@@ -541,8 +547,10 @@ select:focus,
   object-fit: contain !important;
   filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 14px rgba(255, 122, 26, 0.35)) !important;
   background: transparent !important;
+  background-color: transparent !important;
   border-radius: 0 !important;
   border: none !important;
+  box-shadow: none !important;
   margin: 0 auto !important;
   display: block !important;
 }
