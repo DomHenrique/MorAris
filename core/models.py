@@ -133,6 +133,7 @@ class Product(models.Model):
     mobile_image = models.ImageField("Imagem Principal (Mobile)", upload_to="products/mobile/", null=True, blank=True)
     
     unit = models.CharField("Unidade de Medida", max_length=30, default="m²")
+    sob_consulta = models.BooleanField("Sob Consulta", default=False, help_text="Se marcado, oculta o preço no site e exibe 'Sob Consulta'.")
     is_featured = models.BooleanField("Em Destaque", default=False)
     is_promotion = models.BooleanField("Lançamento / Promoção", default=False)
     active = models.BooleanField("Ativo", default=True)

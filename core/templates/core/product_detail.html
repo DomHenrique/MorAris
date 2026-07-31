@@ -56,6 +56,19 @@
                     {{ product.description|linebreaks }}
                 </div>
                 
+                <div class="product-price-wrapper mb-4" style="font-size: 1.25rem;">
+                    {% if product.sob_consulta or not product.price %}
+                    <span class="product-price-consult" style="font-size: 1rem;">Sob Consulta</span>
+                    {% elif product.promotional_price %}
+                    <span class="product-price-old" style="font-size: 1rem;">R$ {{ product.price|floatformat:2 }}</span>
+                    <span class="product-price-current" style="font-size: 1.5rem;">R$ {{ product.promotional_price|floatformat:2 }}</span>
+                    {% if product.unit %}<span class="product-price-unit" style="font-size: 1rem;">/{{ product.unit }}</span>{% endif %}
+                    {% else %}
+                    <span class="product-price-current" style="font-size: 1.5rem;">R$ {{ product.price|floatformat:2 }}</span>
+                    {% if product.unit %}<span class="product-price-unit" style="font-size: 1rem;">/{{ product.unit }}</span>{% endif %}
+                    {% endif %}
+                </div>
+                
                 <hr class="my-4">
                 
                 <a href="#" class="btn btn-primary-custom w-100 py-3 mb-3">Falar com Especialista</a>
@@ -86,6 +99,18 @@
                         <h5 class="product-title mt-2">
                             <a href="{{ rel_prod.get_absolute_url }}" class="text-decoration-none text-dark">{{ rel_prod.name }}</a>
                         </h5>
+                        <div class="product-price-wrapper mt-2">
+                            {% if rel_prod.sob_consulta or not rel_prod.price %}
+                            <span class="product-price-consult">Sob Consulta</span>
+                            {% elif rel_prod.promotional_price %}
+                            <span class="product-price-old">R$ {{ rel_prod.price|floatformat:2 }}</span>
+                            <span class="product-price-current">R$ {{ rel_prod.promotional_price|floatformat:2 }}</span>
+                            {% if rel_prod.unit %}<span class="product-price-unit">/{{ rel_prod.unit }}</span>{% endif %}
+                            {% else %}
+                            <span class="product-price-current">R$ {{ rel_prod.price|floatformat:2 }}</span>
+                            {% if rel_prod.unit %}<span class="product-price-unit">/{{ rel_prod.unit }}</span>{% endif %}
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

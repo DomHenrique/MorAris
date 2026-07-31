@@ -267,6 +267,18 @@
                         <h5 class="product-title m-0" style="font-size: 1.05rem;">
                             <a href="{{ product.get_absolute_url }}" class="text-decoration-none text-dark fw-bold">{{ product.name }}</a>
                         </h5>
+                        <div class="product-price-wrapper mt-2">
+                            {% if product.sob_consulta or not product.price %}
+                            <span class="product-price-consult">Sob Consulta</span>
+                            {% elif product.promotional_price %}
+                            <span class="product-price-old">R$ {{ product.price|floatformat:2 }}</span>
+                            <span class="product-price-current">R$ {{ product.promotional_price|floatformat:2 }}</span>
+                            {% if product.unit %}<span class="product-price-unit">/{{ product.unit }}</span>{% endif %}
+                            {% else %}
+                            <span class="product-price-current">R$ {{ product.price|floatformat:2 }}</span>
+                            {% if product.unit %}<span class="product-price-unit">/{{ product.unit }}</span>{% endif %}
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -22,9 +22,10 @@ class ProductImageInline(AdminMediaMixin, admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(AdminMediaMixin, admin.ModelAdmin):
-    list_display = ('image_preview', 'name', 'category', 'is_featured', 'is_promotion', 'active')
+    list_display = ('image_preview', 'name', 'category', 'price', 'sob_consulta', 'is_featured', 'is_promotion', 'active')
     list_display_links = ('name', 'image_preview')
-    list_filter = ('active', 'is_featured', 'is_promotion', 'category')
+    list_editable = ('price', 'sob_consulta', 'is_featured', 'is_promotion', 'active')
+    list_filter = ('sob_consulta', 'active', 'is_featured', 'is_promotion', 'category')
     search_fields = ('name', 'description')
     prepopulated_fields = {'slug': ('name',)}
     inlines = [ProductImageInline]

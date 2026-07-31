@@ -104,6 +104,37 @@ h1, h2, h3, h4, h5, h6, .display-font {
     letter-spacing: 1px;
 }
 
+/* Product Pricing Styles */
+.product-price-wrapper {
+    margin-top: 0.4rem;
+}
+.product-price-old {
+    font-size: 0.85rem;
+    color: #999999;
+    text-decoration: line-through;
+    margin-right: 0.35rem;
+}
+.product-price-current {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #6e4d38;
+}
+.product-price-unit {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #777777;
+}
+.product-price-consult {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #6e4d38;
+    background-color: rgba(110, 77, 56, 0.08);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+}
+
 /* Buttons */
 .btn-primary-custom {
     background-color: var(--primary-color);
