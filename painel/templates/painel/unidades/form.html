@@ -53,6 +53,21 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Cidade</label>
+          {{ form.cidade }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Estado</label>
+          {{ form.estado }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">CEP</label>
+          {{ form.cep }}
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
           <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Telefone Fixo</label>
           {{ form.telefone }}
         </div>
@@ -67,15 +82,30 @@
       </div>
 
       <div>
-        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Map Embed (Iframe Google Maps)</label>
-        {{ form.map_embed }}
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Horários de Funcionamento</label>
+        {{ form.business_hours }}
       </div>
 
-      <hr class="border-gray-700 my-4" />
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Google Maps Embed URL</label>
+          {{ form.mapa_url }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Rota URL</label>
+          {{ form.rota_url }}
+        </div>
+      </div>
 
-      <div>
-        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Imagem Principal (Card)</label>
-        {{ form.imagem_principal }}
+      <div class="flex items-center gap-4">
+        <label class="flex items-center gap-2 cursor-pointer text-sm">
+          {{ form.is_active }}
+          <span>Unidade Ativa</span>
+        </label>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Ordem</label>
+          {{ form.ordem }}
+        </div>
       </div>
     </div>
 

@@ -65,7 +65,11 @@ class SobreEmpresaForm(forms.ModelForm):
 class UnidadeForm(forms.ModelForm):
     class Meta:
         model = Unidade
-        fields = ['nome', 'tipo', 'title_eyebrow', 'title_main', 'card_title', 'endereco', 'telefone', 'whatsapp', 'email', 'map_embed', 'imagem_principal']
+        fields = [
+            'nome', 'tipo', 'title_eyebrow', 'title_main', 'card_title',
+            'endereco', 'cidade', 'estado', 'cep', 'email', 'telefone', 'whatsapp',
+            'business_hours', 'mapa_url', 'rota_url', 'ordem', 'is_active'
+        ]
         widgets = {
             'nome': forms.TextInput(attrs={'class': 'gridd-input'}),
             'tipo': forms.Select(attrs={'class': 'gridd-input bg-[#0A0A32]'}),
@@ -73,11 +77,17 @@ class UnidadeForm(forms.ModelForm):
             'title_main': forms.TextInput(attrs={'class': 'gridd-input'}),
             'card_title': forms.TextInput(attrs={'class': 'gridd-input'}),
             'endereco': forms.TextInput(attrs={'class': 'gridd-input'}),
+            'cidade': forms.TextInput(attrs={'class': 'gridd-input'}),
+            'estado': forms.TextInput(attrs={'class': 'gridd-input'}),
+            'cep': forms.TextInput(attrs={'class': 'gridd-input'}),
+            'email': forms.EmailInput(attrs={'class': 'gridd-input'}),
             'telefone': forms.TextInput(attrs={'class': 'gridd-input'}),
             'whatsapp': forms.TextInput(attrs={'class': 'gridd-input'}),
-            'email': forms.EmailInput(attrs={'class': 'gridd-input'}),
-            'map_embed': forms.Textarea(attrs={'class': 'gridd-input', 'rows': 3}),
-            'imagem_principal': forms.ClearableFileInput(attrs={'class': 'gridd-input text-xs'}),
+            'business_hours': forms.Textarea(attrs={'class': 'gridd-input', 'rows': 2}),
+            'mapa_url': forms.URLInput(attrs={'class': 'gridd-input'}),
+            'rota_url': forms.URLInput(attrs={'class': 'gridd-input'}),
+            'ordem': forms.NumberInput(attrs={'class': 'gridd-input'}),
+            'is_active': forms.CheckboxInput(attrs={'class': 'w-4 h-4 rounded border-gray-600 bg-gray-900 text-orange-500 focus:ring-orange-500 cursor-pointer'}),
         }
 
 ProductImageFormSet = inlineformset_factory(
