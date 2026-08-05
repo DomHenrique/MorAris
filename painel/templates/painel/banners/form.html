@@ -1,0 +1,83 @@
+{% extends 'painel/base_admin.html' %}
+{% block page_title %}{% if object %}Editar Banner{% else %}Novo Banner{% endif %}{% endblock %}
+
+{% block content %}
+<div class="gridd-card p-6 max-w-2xl mx-auto">
+  <h3 class="text-lg font-extrabold text-white mb-6">{% if object %}Editar Banner{% else %}Novo Banner{% endif %}</h3>
+  
+  <form method="post" enctype="multipart/form-data" class="space-y-4">
+    {% csrf_token %}
+    
+    {% if form.errors %}
+      <div class="p-4 bg-red-500/20 text-red-300 rounded-lg text-sm mb-4">Por favor, corrija os erros abaixo.</div>
+    {% endif %}
+
+    <div>
+      <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Campanha (Opcional)</label>
+      {{ form.campaign }}
+      {{ form.campaign.errors }}
+    </div>
+
+    <div>
+      <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Título</label>
+      {{ form.title }}
+      {{ form.title.errors }}
+    </div>
+
+    <div>
+      <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Subtítulo</label>
+      {{ form.subtitle }}
+      {{ form.subtitle.errors }}
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Imagem Desktop</label>
+        {{ form.image }}
+        {{ form.image.errors }}
+      </div>
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Imagem Mobile</label>
+        {{ form.mobile_image }}
+        {{ form.mobile_image.errors }}
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Link URL</label>
+        {{ form.link }}
+        {{ form.link.errors }}
+      </div>
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Texto do Link</label>
+        {{ form.link_text }}
+        {{ form.link_text.errors }}
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Ordem</label>
+        {{ form.order }}
+        {{ form.order.errors }}
+      </div>
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Cor do Texto</label>
+        {{ form.text_color }}
+        {{ form.text_color.errors }}
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-2 pt-2">
+      {{ form.active }}
+      <label class="text-sm">Banner Ativo</label>
+    </div>
+
+    <div class="pt-4 flex justify-end gap-3 border-t border-gray-700">
+      <a href="{% url 'painel:banner_list' %}" class="gridd-btn-secondary">Cancelar</a>
+      <button type="submit" class="gridd-btn-primary">Salvar</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'painel/base_admin.html' %}
+{% block page_title %}{% if object %}Editar Unidade{% else %}Nova Unidade{% endif %}{% endblock %}
+
+{% block content %}
+<div class="gridd-card p-6 max-w-4xl mx-auto">
+  <h3 class="text-lg font-extrabold text-white mb-6">{% if object %}Editar Unidade{% else %}Nova Unidade{% endif %}</h3>
+  
+  <form method="post" enctype="multipart/form-data" class="space-y-6">
+    {% csrf_token %}
+    
+    {% if form.errors %}
+      <div class="p-4 bg-red-500/20 text-red-300 rounded-lg text-sm mb-4">Por favor, corrija os erros abaixo.</div>
+    {% endif %}
+
+    <!-- Info Principal -->
+    <div class="space-y-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Nome da Unidade</label>
+          {{ form.nome }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Tipo</label>
+          {{ form.tipo }}
+        </div>
+      </div>
+
+      <hr class="border-gray-700 my-4" />
+      <h4 class="text-md font-bold text-white mb-2">Títulos e Textos</h4>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Texto de Apoio (Eyebrow)</label>
+          {{ form.title_eyebrow }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Título Principal</label>
+          {{ form.title_main }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Título do Card</label>
+          {{ form.card_title }}
+        </div>
+      </div>
+
+      <hr class="border-gray-700 my-4" />
+      <h4 class="text-md font-bold text-white mb-2">Contato e Endereço</h4>
+
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Endereço Completo</label>
+        {{ form.endereco }}
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Telefone Fixo</label>
+          {{ form.telefone }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">WhatsApp</label>
+          {{ form.whatsapp }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">E-mail</label>
+          {{ form.email }}
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Map Embed (Iframe Google Maps)</label>
+        {{ form.map_embed }}
+      </div>
+
+      <hr class="border-gray-700 my-4" />
+
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Imagem Principal (Card)</label>
+        {{ form.imagem_principal }}
+      </div>
+    </div>
+
+    <div class="pt-6 flex justify-end gap-3 border-t border-gray-700">
+      <a href="{% url 'painel:unidade_list' %}" class="gridd-btn-secondary">Cancelar</a>
+      <button type="submit" class="gridd-btn-primary">Salvar Unidade</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

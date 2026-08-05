@@ -1,0 +1,53 @@
+{% extends 'painel/base_admin.html' %}
+{% block page_title %}Unidades{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <div class="flex justify-between items-center">
+    <h3 class="text-lg font-bold text-white">Unidades e Showrooms</h3>
+    <a href="{% url 'painel:unidade_add' %}" class="gridd-btn-primary">
+      <i class="ri-add-line"></i> Nova Unidade
+    </a>
+  </div>
+
+  <div class="gridd-card overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="gridd-table">
+        <thead>
+          <tr>
+            <th>Nome da Unidade</th>
+            <th>Tipo</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+            <th class="text-right">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in unidades %}
+          <tr>
+            <td class="font-bold text-white">{{ item.nome }}</td>
+            <td>
+              <span class="px-2.5 py-1 bg-white/5 rounded-md text-xs font-semibold text-orange-400 uppercase">
+                {{ item.get_tipo_display }}
+              </span>
+            </td>
+            <td class="text-gray-400">{{ item.endereco|default:"-" }}</td>
+            <td class="text-gray-400">{{ item.telefone|default:"-" }}</td>
+            <td class="text-right space-x-2">
+              <a href="{% url 'painel:unidade_edit' item.pk %}" class="gridd-btn-secondary py-1 px-2 text-xs inline-block" title="Editar">
+                <i class="ri-edit-line"></i>
+              </a>
+              <a href="{% url 'painel:unidade_delete' item.pk %}" class="gridd-btn-danger py-1 px-2 text-xs inline-block" title="Excluir">
+                <i class="ri-delete-bin-line"></i>
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="5" class="text-center py-8 text-gray-400">Nenhuma unidade cadastrada.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'painel/base_admin.html' %}
+{% block page_title %}Sobre a Empresa{% endblock %}
+
+{% block content %}
+<div class="gridd-card p-6 max-w-2xl mx-auto">
+  <h3 class="text-lg font-extrabold text-white mb-6">Configurar 'Sobre a Empresa'</h3>
+  
+  <form method="post" enctype="multipart/form-data" class="space-y-4">
+    {% csrf_token %}
+    
+    {% if form.errors %}
+      <div class="p-4 bg-red-500/20 text-red-300 rounded-lg text-sm mb-4">Por favor, corrija os erros abaixo.</div>
+    {% endif %}
+
+    <div>
+      <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Título da Seção</label>
+      {{ form.titulo_secao }}
+      {{ form.titulo_secao.errors }}
+    </div>
+
+    <div>
+      <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Texto Principal</label>
+      {{ form.texto }}
+      {{ form.texto.errors }}
+    </div>
+
+    <div>
+      <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Imagem da Loja</label>
+      {{ form.imagem_loja }}
+      {{ form.imagem_loja.errors }}
+    </div>
+
+    <div class="pt-4 flex justify-end gap-3 border-t border-gray-700">
+      <a href="{% url 'painel:product_list' %}" class="gridd-btn-secondary">Voltar</a>
+      <button type="submit" class="gridd-btn-primary">Salvar Alterações</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     # Custom apps
     'core',
     'empresa',
+    'painel',
     
     'storages',
 ]

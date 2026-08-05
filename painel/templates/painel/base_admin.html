@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Painel de Controle | MorARIs Admin{% endblock %}</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- RemixIcon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" />
+  <!-- Custom Admin CSS -->
+  <link rel="stylesheet" href="{% static 'painel/css/admin.css' %}" />
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-[#00000A] text-white min-h-screen flex flex-col lg:flex-row">
+
+  <!-- SIDEBAR NAVIGATION -->
+  {% include 'painel/includes/_sidebar.html' %}
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+    <!-- Top Header Bar -->
+    {% include 'painel/includes/_topbar.html' %}
+
+    <!-- App Content Wrapper -->
+    <div id="appContent" class="p-6 flex-1">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <!-- MODAL CONTAINER (For forms/AJAX if needed) -->
+  <div id="adminModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="modalCard" class="gridd-card w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 relative">
+      <button id="closeModalBtn" onclick="document.getElementById('adminModal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+        <i class="ri-close-line"></i>
+      </button>
+      <div id="modalBody">
+        {% block modal_body %}{% endblock %}
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2"></div>
+
+  <!-- Dependencies -->
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,50 @@
+{% extends 'painel/base_admin.html' %}
+{% block page_title %}{% if object %}Editar Marca{% else %}Nova Marca{% endif %}{% endblock %}
+
+{% block content %}
+<div class="gridd-card p-6 max-w-2xl mx-auto">
+  <h3 class="text-lg font-extrabold text-white mb-6">{% if object %}Editar Marca{% else %}Nova Marca{% endif %}</h3>
+  
+  <form method="post" enctype="multipart/form-data" class="space-y-4">
+    {% csrf_token %}
+    
+    {% if form.errors %}
+      <div class="p-4 bg-red-500/20 text-red-300 rounded-lg text-sm mb-4">Por favor, corrija os erros abaixo.</div>
+    {% endif %}
+
+    <div>
+      <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Nome da Marca</label>
+      {{ form.nome }}
+      {{ form.nome.errors }}
+    </div>
+
+    <div>
+      <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Logo</label>
+      {{ form.logo }}
+      {{ form.logo.errors }}
+    </div>
+
+    <div>
+      <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Ordem de Exibição</label>
+      {{ form.ordem }}
+      {{ form.ordem.errors }}
+    </div>
+
+    <div class="flex flex-col gap-2 pt-2">
+      <div class="flex items-center gap-2">
+        {{ form.is_active }}
+        <label class="text-sm">Marca Ativa</label>
+      </div>
+      <div class="flex items-center gap-2">
+        {{ form.em_destaque }}
+        <label class="text-sm">Destaque na Home</label>
+      </div>
+    </div>
+
+    <div class="pt-4 flex justify-end gap-3 border-t border-gray-700">
+      <a href="{% url 'painel:marca_list' %}" class="gridd-btn-secondary">Cancelar</a>
+      <button type="submit" class="gridd-btn-primary">Salvar</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

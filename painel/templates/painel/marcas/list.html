@@ -1,0 +1,63 @@
+{% extends 'painel/base_admin.html' %}
+{% block page_title %}Marcas Parceiras{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <div class="flex justify-between items-center">
+    <h3 class="text-lg font-bold text-white">Marcas Parceiras</h3>
+    <a href="{% url 'painel:marca_add' %}" class="gridd-btn-primary">
+      <i class="ri-add-line"></i> Nova Marca
+    </a>
+  </div>
+
+  <div class="gridd-card overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="gridd-table">
+        <thead>
+          <tr>
+            <th>Logo</th>
+            <th>Nome</th>
+            <th>Destaque</th>
+            <th>Status</th>
+            <th class="text-right">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in marcas %}
+          <tr>
+            <td>
+              {% if item.logo %}
+                <img src="{{ item.logo.url }}" alt="{{ item.nome }}" class="h-8 object-contain bg-white rounded p-1" />
+              {% else %}
+                -
+              {% endif %}
+            </td>
+            <td class="font-bold text-white">{{ item.nome }}</td>
+            <td>
+              <span class="{% if item.em_destaque %}gridd-badge-success{% else %}gridd-badge-danger{% endif %}">
+                {% if item.em_destaque %}Sim{% else %}Não{% endif %}
+              </span>
+            </td>
+            <td>
+              <span class="{% if item.is_active %}gridd-badge-success{% else %}gridd-badge-danger{% endif %}">
+                {% if item.is_active %}Ativo{% else %}Inativo{% endif %}
+              </span>
+            </td>
+            <td class="text-right space-x-2">
+              <a href="{% url 'painel:marca_edit' item.pk %}" class="gridd-btn-secondary py-1 px-2 text-xs inline-block" title="Editar">
+                <i class="ri-edit-line"></i>
+              </a>
+              <a href="{% url 'painel:marca_delete' item.pk %}" class="gridd-btn-danger py-1 px-2 text-xs inline-block" title="Excluir">
+                <i class="ri-delete-bin-line"></i>
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="5" class="text-center py-8 text-gray-400">Nenhuma marca cadastrada.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

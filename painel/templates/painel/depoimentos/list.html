@@ -1,0 +1,54 @@
+{% extends 'painel/base_admin.html' %}
+{% block page_title %}Depoimentos{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <div class="flex justify-between items-center">
+    <h3 class="text-lg font-bold text-white">Depoimentos</h3>
+    <a href="{% url 'painel:testimonial_add' %}" class="gridd-btn-primary">
+      <i class="ri-add-line"></i> Novo Depoimento
+    </a>
+  </div>
+
+  <div class="gridd-card overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="gridd-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Avaliação</th>
+            <th>Status</th>
+            <th class="text-right">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in depoimentos %}
+          <tr>
+            <td class="font-bold text-white">{{ item.name }}</td>
+            <td class="text-orange-400">
+              {% for _ in item.stars_filled %}<i class="ri-star-fill"></i>{% endfor %}
+              {% for _ in item.stars_empty %}<i class="ri-star-line"></i>{% endfor %}
+            </td>
+            <td>
+              <span class="{% if item.active %}gridd-badge-success{% else %}gridd-badge-danger{% endif %}">
+                {% if item.active %}Ativo{% else %}Inativo{% endif %}
+              </span>
+            </td>
+            <td class="text-right space-x-2">
+              <a href="{% url 'painel:testimonial_edit' item.pk %}" class="gridd-btn-secondary py-1 px-2 text-xs inline-block" title="Editar">
+                <i class="ri-edit-line"></i>
+              </a>
+              <a href="{% url 'painel:testimonial_delete' item.pk %}" class="gridd-btn-danger py-1 px-2 text-xs inline-block" title="Excluir">
+                <i class="ri-delete-bin-line"></i>
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="4" class="text-center py-8 text-gray-400">Nenhum depoimento cadastrado.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

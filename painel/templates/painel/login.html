@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | MorARIs Admin</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- RemixIcon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" />
+  <!-- Custom Admin CSS -->
+  <link rel="stylesheet" href="{% static 'painel/css/admin.css' %}" />
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 bg-[#00000A]">
+
+  <div class="w-full max-w-md">
+    <!-- Header Logo -->
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-orange-500 via-amber-500 to-indigo-600 text-white text-3xl shadow-lg shadow-orange-500/20 mb-3 border border-white/20">
+        <i class="ri-shield-keyhole-line"></i>
+      </div>
+      <h1 class="text-2xl font-extrabold text-white tracking-tight bg-gradient-to-r from-orange-400 via-amber-300 to-indigo-300 bg-clip-text text-transparent">MorARIs</h1>
+      <p class="text-xs text-gray-400 mt-1 font-medium">Sistema de Gestão & Administração</p>
+    </div>
+
+    <!-- Login Card -->
+    <div class="gridd-card p-8">
+
+      {% if form.errors %}
+      <div class="mb-6 p-4 rounded-lg text-sm bg-red-500/20 text-red-300 border-red-500/40 border">
+        Usuário ou senha incorretos. Tente novamente.
+      </div>
+      {% endif %}
+
+      <form method="post" action="{% url 'painel:login' %}" class="space-y-5">
+        {% csrf_token %}
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Usuário</label>
+          <div class="relative">
+            <input type="text" name="username" required class="gridd-input pl-10" placeholder="admin" autofocus />
+            <i class="ri-user-line absolute left-3 top-3 text-gray-500"></i>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Senha</label>
+          <div class="relative">
+            <input type="password" name="password" required class="gridd-input pl-10" placeholder="••••••••" />
+            <i class="ri-lock-line absolute left-3 top-3 text-gray-500"></i>
+          </div>
+        </div>
+
+        <button type="submit" class="gridd-btn-primary w-full justify-center text-base py-3">
+          Entrar no Painel <i class="ri-login-box-line"></i>
+        </button>
+        <input type="hidden" name="next" value="{{ next|default:'/painel/' }}" />
+      </form>
+
+      <!-- Footer Setup Link -->
+      <div class="mt-6 pt-4 border-t border-gray-700/50 flex justify-between items-center text-xs">
+        <a href="/" class="text-gray-400 hover:text-orange-400 transition flex items-center gap-1">
+          <i class="ri-arrow-left-line"></i> Voltar ao site
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

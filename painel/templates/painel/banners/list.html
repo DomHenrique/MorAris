@@ -1,0 +1,59 @@
+{% extends 'painel/base_admin.html' %}
+{% block page_title %}Banners{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <div class="flex justify-between items-center">
+    <h3 class="text-lg font-bold text-white">Banners da Home</h3>
+    <a href="{% url 'painel:banner_add' %}" class="gridd-btn-primary">
+      <i class="ri-add-line"></i> Novo Banner
+    </a>
+  </div>
+
+  <div class="gridd-card overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="gridd-table">
+        <thead>
+          <tr>
+            <th>Imagem</th>
+            <th>Título</th>
+            <th>Ordem</th>
+            <th>Status</th>
+            <th class="text-right">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for banner in banners %}
+          <tr>
+            <td>
+              {% if banner.image %}
+                <img src="{{ banner.image.url }}" alt="{{ banner.title }}" class="h-10 w-20 object-cover rounded" />
+              {% else %}
+                -
+              {% endif %}
+            </td>
+            <td class="font-bold text-white">{{ banner.title|default:"Sem título" }}</td>
+            <td class="text-gray-400 text-xs">{{ banner.order }}</td>
+            <td>
+              <span class="{% if banner.active %}gridd-badge-success{% else %}gridd-badge-danger{% endif %}">
+                {% if banner.active %}Ativo{% else %}Inativo{% endif %}
+              </span>
+            </td>
+            <td class="text-right space-x-2">
+              <a href="{% url 'painel:banner_edit' banner.pk %}" class="gridd-btn-secondary py-1 px-2 text-xs inline-block" title="Editar">
+                <i class="ri-edit-line"></i>
+              </a>
+              <a href="{% url 'painel:banner_delete' banner.pk %}" class="gridd-btn-danger py-1 px-2 text-xs inline-block" title="Excluir">
+                <i class="ri-delete-bin-line"></i>
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="5" class="text-center py-8 text-gray-400">Nenhum banner cadastrado.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

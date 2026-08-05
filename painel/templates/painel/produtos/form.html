@@ -1,0 +1,145 @@
+{% extends 'painel/base_admin.html' %}
+{% block page_title %}{% if object %}Editar Produto{% else %}Novo Produto{% endif %}{% endblock %}
+
+{% block content %}
+<div class="gridd-card p-6 max-w-4xl mx-auto">
+  <h3 class="text-lg font-extrabold text-white mb-6">{% if object %}Editar Produto{% else %}Novo Produto{% endif %}</h3>
+  
+  <form method="post" enctype="multipart/form-data" class="space-y-6">
+    {% csrf_token %}
+    
+    {% if form.errors or formset.errors %}
+      <div class="p-4 bg-red-500/20 text-red-300 rounded-lg text-sm mb-4">
+        Por favor, corrija os erros no formulário.
+      </div>
+    {% endif %}
+
+    <!-- Dados Principais -->
+    <div class="space-y-4">
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Nome do Produto</label>
+        {{ form.name }}
+        {{ form.name.errors }}
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Categoria</label>
+          {{ form.category }}
+          {{ form.category.errors }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Preço (R$)</label>
+          {{ form.price }}
+          {{ form.price.errors }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Preço Promo (R$)</label>
+          {{ form.promotional_price }}
+          {{ form.promotional_price.errors }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Un. de Medida</label>
+          {{ form.unit }}
+          {{ form.unit.errors }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Slug</label>
+          {{ form.slug }}
+          {{ form.slug.errors }}
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Descrição</label>
+        {{ form.description }}
+        {{ form.description.errors }}
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Imagem Principal</label>
+          {{ form.image }}
+          {{ form.image.errors }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Imagem Mobile</label>
+          {{ form.mobile_image }}
+          {{ form.mobile_image.errors }}
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-6 pt-2">
+        <label class="flex items-center gap-2 cursor-pointer text-sm">
+          {{ form.active }}
+          <span>Ativo no site</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer text-sm">
+          {{ form.is_featured }}
+          <span>Destaque</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer text-sm">
+          {{ form.is_promotion }}
+          <span>Promoção / Lançamento</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer text-sm">
+          {{ form.sob_consulta }}
+          <span>Sob Consulta</span>
+        </label>
+      </div>
+      
+      <hr class="border-gray-700 my-4" />
+      <h4 class="text-md font-bold text-white mb-4">SEO</h4>
+      
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Meta Title (SEO)</label>
+        {{ form.meta_title }}
+      </div>
+      <div>
+        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Meta Description (SEO)</label>
+        {{ form.meta_description }}
+      </div>
+    </div>
+
+    <!-- Galeria de Imagens Extras (Formset) -->
+    <hr class="border-gray-700 my-6" />
+    <h4 class="text-md font-bold text-white mb-4">Galeria de Imagens</h4>
+    
+    {{ formset.management_form }}
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {% for form_img in formset %}
+        <div class="border border-gray-700 p-4 rounded-lg bg-gray-800/30 space-y-3 relative">
+          {{ form_img.id }}
+          <div>
+            <label class="block text-xs text-gray-400 mb-1">Imagem Extra Desktop</label>
+            {{ form_img.image }}
+            {{ form_img.image.errors }}
+          </div>
+          <div>
+            <label class="block text-xs text-gray-400 mb-1">Imagem Extra Mobile (Opcional)</label>
+            {{ form_img.mobile_image }}
+            {{ form_img.mobile_image.errors }}
+          </div>
+          <div class="flex items-center justify-between">
+            <div>
+              <label class="block text-xs text-gray-400 mb-1">Ordem</label>
+              {{ form_img.order }}
+            </div>
+            {% if formset.can_delete %}
+              <div class="text-right flex items-center gap-1 text-rose-400 text-sm">
+                {{ form_img.DELETE }} <label>Excluir</label>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="pt-6 flex justify-end gap-3 border-t border-gray-700">
+      <a href="{% url 'painel:product_list' %}" class="gridd-btn-secondary">Cancelar</a>
+      <button type="submit" class="gridd-btn-primary">Salvar Produto</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

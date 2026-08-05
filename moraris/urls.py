@@ -12,6 +12,7 @@ def custom_admin_logout(request):
 urlpatterns = [
     path('admin/logout/', custom_admin_logout, name='custom_admin_logout'),
     path('admin/', admin.site.urls),
+    path('painel/', include('painel.urls')),
     path('', include('core.urls')),
 ]
 

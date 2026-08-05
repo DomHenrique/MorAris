@@ -1,0 +1,93 @@
+{% extends 'painel/base_admin.html' %}
+{% block page_title %}Produtos{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <div class="flex items-center gap-3">
+      <!-- Filtros virão depois, por agora só o layout -->
+    </div>
+    <a href="{% url 'painel:product_add' %}" class="gridd-btn-primary">
+      <i class="ri-add-line"></i> Novo Produto
+    </a>
+  </div>
+
+  <div class="gridd-card overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="gridd-table">
+        <thead>
+          <tr>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Preço</th>
+            <th>Sob Consulta</th>
+            <th>Ativo</th>
+            <th>Destaque</th>
+            <th class="text-right">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for prod in produtos %}
+          <tr>
+            <td>
+              {% if prod.image %}
+                <div class="admin-img-wrap">
+                  <img src="{{ prod.image.url }}" alt="{{ prod.name }}" class="admin-img-thumb" />
+                  <div class="admin-img-popover">
+                    <img src="{{ prod.image.url }}" alt="{{ prod.name }}" />
+                    <span class="text-xs font-bold text-gray-200 block mt-2">{{ prod.name }}</span>
+                  </div>
+                </div>
+              {% else %}
+                <span class="text-gray-500 text-xs">Sem foto</span>
+              {% endif %}
+            </td>
+            <td class="font-bold text-white">{{ prod.name }}</td>
+            <td>
+              <span class="px-2.5 py-1 bg-white/5 rounded-md text-xs font-semibold text-orange-400">
+                {{ prod.category.name|default:"-" }}
+              </span>
+            </td>
+            <td class="font-semibold">
+              {% if prod.price %}
+                R$ {{ prod.price }}
+              {% else %}
+                -
+              {% endif %}
+            </td>
+            <td>
+              <span class="{% if prod.sob_consulta %}gridd-badge-danger{% else %}gridd-badge-success{% endif %}">
+                {% if prod.sob_consulta %}Sim{% else %}Não{% endif %}
+              </span>
+            </td>
+            <td>
+              <span class="{% if prod.active %}gridd-badge-success{% else %}gridd-badge-danger{% endif %}">
+                {% if prod.active %}Ativo{% else %}Inativo{% endif %}
+              </span>
+            </td>
+            <td>
+              <span class="{% if prod.is_featured %}gridd-badge-success{% else %}gridd-badge-danger{% endif %}">
+                {% if prod.is_featured %}Sim{% else %}Não{% endif %}
+              </span>
+            </td>
+            <td class="text-right space-x-2">
+              <a href="{% url 'painel:product_edit' prod.pk %}" class="gridd-btn-secondary py-1 px-2 text-xs inline-block" title="Editar">
+                <i class="ri-edit-line"></i>
+              </a>
+              <a href="{% url 'painel:product_delete' prod.pk %}" class="gridd-btn-danger py-1 px-2 text-xs inline-block" title="Excluir">
+                <i class="ri-delete-bin-line"></i>
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="8" class="text-center py-8 text-gray-400">Nenhum produto encontrado.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
