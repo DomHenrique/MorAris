@@ -40,6 +40,37 @@ class ProductForm(forms.ModelForm):
             'meta_description': forms.Textarea(attrs={'class': 'gridd-input', 'rows': 3}),
         }
 
+class BannerForm(forms.ModelForm):
+    class Meta:
+        model = Banner
+        fields = ['campaign', 'title', 'subtitle', 'text_color', 'image', 'mobile_image', 'link', 'link_text', 'active', 'order']
+        widgets = {
+            'campaign': forms.Select(attrs={'class': 'gridd-input bg-[#0A0A32]'}),
+            'title': forms.TextInput(attrs={'class': 'gridd-input'}),
+            'subtitle': forms.TextInput(attrs={'class': 'gridd-input'}),
+            'text_color': forms.TextInput(attrs={'class': 'gridd-input', 'type': 'color', 'style': 'height: 42px; padding: 0.2rem 0.5rem;'}),
+            'image': forms.ClearableFileInput(attrs={'class': 'gridd-input text-xs'}),
+            'mobile_image': forms.ClearableFileInput(attrs={'class': 'gridd-input text-xs'}),
+            'link': forms.URLInput(attrs={'class': 'gridd-input'}),
+            'link_text': forms.TextInput(attrs={'class': 'gridd-input'}),
+            'active': forms.CheckboxInput(attrs={'class': 'w-4 h-4 rounded border-gray-600 bg-gray-900 text-orange-500 focus:ring-orange-500 cursor-pointer'}),
+            'order': forms.NumberInput(attrs={'class': 'gridd-input'}),
+        }
+
+class TestimonialForm(forms.ModelForm):
+    class Meta:
+        model = Testimonial
+        fields = ['name', 'city', 'text', 'rating', 'photo', 'mobile_photo', 'active']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'gridd-input'}),
+            'city': forms.TextInput(attrs={'class': 'gridd-input'}),
+            'text': forms.Textarea(attrs={'class': 'gridd-input', 'rows': 4}),
+            'rating': forms.NumberInput(attrs={'class': 'gridd-input', 'min': 1, 'max': 5}),
+            'photo': forms.ClearableFileInput(attrs={'class': 'gridd-input text-xs'}),
+            'mobile_photo': forms.ClearableFileInput(attrs={'class': 'gridd-input text-xs'}),
+            'active': forms.CheckboxInput(attrs={'class': 'w-4 h-4 rounded border-gray-600 bg-gray-900 text-orange-500 focus:ring-orange-500 cursor-pointer'}),
+        }
+
 class MarcaForm(forms.ModelForm):
     class Meta:
         model = Marca
