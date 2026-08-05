@@ -20,6 +20,7 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['category', 'name', 'slug', 'description', 'price', 'promotional_price', 
+                  'max_installments', 'price_display_mode',
                   'image', 'mobile_image', 'unit', 'sob_consulta', 'is_featured', 
                   'is_promotion', 'active', 'meta_title', 'meta_description']
         widgets = {
@@ -29,6 +30,8 @@ class ProductForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'gridd-input', 'rows': 4}),
             'price': forms.NumberInput(attrs={'class': 'gridd-input', 'step': '0.01'}),
             'promotional_price': forms.NumberInput(attrs={'class': 'gridd-input', 'step': '0.01'}),
+            'max_installments': forms.NumberInput(attrs={'class': 'gridd-input'}),
+            'price_display_mode': forms.Select(attrs={'class': 'gridd-input bg-[#0A0A32]'}),
             'image': forms.ClearableFileInput(attrs={'class': 'gridd-input text-xs'}),
             'mobile_image': forms.ClearableFileInput(attrs={'class': 'gridd-input text-xs'}),
             'unit': forms.TextInput(attrs={'class': 'gridd-input'}),

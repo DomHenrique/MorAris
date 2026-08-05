@@ -126,8 +126,17 @@ class Product(models.Model):
     slug = models.SlugField("Slug", unique=True, null=True, blank=True)
     description = models.TextField("Descrição", help_text="Descreva a textura, acabamento e a sensação que o material proporciona.")
     
+    PRICE_DISPLAY_CHOICES = (
+        ('total', 'Mostrar apenas Total'),
+        ('installment', 'Mostrar apenas Parcela'),
+        ('both', 'Mostrar Total e Parcela'),
+    )
+
     price = models.DecimalField("Preço", max_digits=10, decimal_places=2, null=True, blank=True, help_text="Deixe em branco para 'Consultar Especialista'")
     promotional_price = models.DecimalField("Preço Promocional", max_digits=10, decimal_places=2, null=True, blank=True)
+    
+    max_installments = models.IntegerField("Máx. Parcelas", default=1, help_text="Ex: 12 para 12x. Use 1 para sem parcelamento.")
+    price_display_mode = models.CharField("Modo de Exibição", max_length=20, choices=PRICE_DISPLAY_CHOICES, default='total')
     
     image = models.ImageField("Imagem Principal (Desktop)", upload_to="products/", help_text="Priorize imagens do produto ambientado.")
     mobile_image = models.ImageField("Imagem Principal (Mobile)", upload_to="products/mobile/", null=True, blank=True)
@@ -155,6 +164,14 @@ class Product(models.Model):
         if self.slug:
             return reverse('core:product_detail', kwargs={'slug': self.slug})
         return "#"
+
+    @property
+    def installment_value(self):
+        if self.max_installments and self.max_installments > 1:
+            base_price = self.promotional_price if self.promotional_price else self.price
+            if base_price:
+                return round(base_price / self.max_installments, 2)
+        return None
 
     @property
     def display_price(self):

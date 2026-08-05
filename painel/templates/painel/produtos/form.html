@@ -29,6 +29,19 @@
           {{ form.category.errors }}
         </div>
         <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Un. de Medida</label>
+          {{ form.unit }}
+          {{ form.unit.errors }}
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Slug</label>
+          {{ form.slug }}
+          {{ form.slug.errors }}
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+        <div>
           <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Preço (R$)</label>
           {{ form.price }}
           {{ form.price.errors }}
@@ -39,14 +52,14 @@
           {{ form.promotional_price.errors }}
         </div>
         <div>
-          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Un. de Medida</label>
-          {{ form.unit }}
-          {{ form.unit.errors }}
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Máx. Parcelas</label>
+          {{ form.max_installments }}
+          {{ form.max_installments.errors }}
         </div>
         <div>
-          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Slug</label>
-          {{ form.slug }}
-          {{ form.slug.errors }}
+          <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Exibição do Preço</label>
+          {{ form.price_display_mode }}
+          {{ form.price_display_mode.errors }}
         </div>
       </div>
 

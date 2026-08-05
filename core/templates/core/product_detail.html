@@ -59,13 +59,21 @@
                 <div class="product-price-wrapper mb-4" style="font-size: 1.25rem;">
                     {% if product.sob_consulta or not product.price %}
                     <span class="product-price-consult" style="font-size: 1rem;">Sob Consulta</span>
-                    {% elif product.promotional_price %}
-                    <span class="product-price-old" style="font-size: 1rem;">R$ {{ product.price|floatformat:2 }}</span>
-                    <span class="product-price-current" style="font-size: 1.5rem;">R$ {{ product.promotional_price|floatformat:2 }}</span>
-                    {% if product.unit %}<span class="product-price-unit" style="font-size: 1rem;">/{{ product.unit }}</span>{% endif %}
                     {% else %}
-                    <span class="product-price-current" style="font-size: 1.5rem;">R$ {{ product.price|floatformat:2 }}</span>
-                    {% if product.unit %}<span class="product-price-unit" style="font-size: 1rem;">/{{ product.unit }}</span>{% endif %}
+                        {% if product.price_display_mode != 'installment' %}
+                            {% if product.promotional_price %}
+                            <span class="product-price-old" style="font-size: 1rem;">R$ {{ product.price|floatformat:2 }}</span>
+                            <span class="product-price-current" style="font-size: 1.5rem;">R$ {{ product.promotional_price|floatformat:2 }}</span>
+                            {% else %}
+                            <span class="product-price-current" style="font-size: 1.5rem;">R$ {{ product.price|floatformat:2 }}</span>
+                            {% endif %}
+                            {% if product.unit %}<span class="product-price-unit" style="font-size: 1rem;">/{{ product.unit }}</span>{% endif %}
+                        {% endif %}
+                        {% if product.price_display_mode != 'total' and product.installment_value %}
+                            <div class="product-installment mt-2" style="font-size: 1.1rem; color: #f97316; font-weight: bold;">
+                                {{ product.max_installments }}x de R$ {{ product.installment_value|floatformat:2 }} sem juros
+                            </div>
+                        {% endif %}
                     {% endif %}
                 </div>
                 
@@ -102,13 +110,21 @@
                         <div class="product-price-wrapper mt-2">
                             {% if rel_prod.sob_consulta or not rel_prod.price %}
                             <span class="product-price-consult">Sob Consulta</span>
-                            {% elif rel_prod.promotional_price %}
-                            <span class="product-price-old">R$ {{ rel_prod.price|floatformat:2 }}</span>
-                            <span class="product-price-current">R$ {{ rel_prod.promotional_price|floatformat:2 }}</span>
-                            {% if rel_prod.unit %}<span class="product-price-unit">/{{ rel_prod.unit }}</span>{% endif %}
                             {% else %}
-                            <span class="product-price-current">R$ {{ rel_prod.price|floatformat:2 }}</span>
-                            {% if rel_prod.unit %}<span class="product-price-unit">/{{ rel_prod.unit }}</span>{% endif %}
+                                {% if rel_prod.price_display_mode != 'installment' %}
+                                    {% if rel_prod.promotional_price %}
+                                    <span class="product-price-old">R$ {{ rel_prod.price|floatformat:2 }}</span>
+                                    <span class="product-price-current">R$ {{ rel_prod.promotional_price|floatformat:2 }}</span>
+                                    {% else %}
+                                    <span class="product-price-current">R$ {{ rel_prod.price|floatformat:2 }}</span>
+                                    {% endif %}
+                                    {% if rel_prod.unit %}<span class="product-price-unit">/{{ rel_prod.unit }}</span>{% endif %}
+                                {% endif %}
+                                {% if rel_prod.price_display_mode != 'total' and rel_prod.installment_value %}
+                                    <div class="product-installment text-sm text-orange-500 font-semibold mt-1">
+                                        {{ rel_prod.max_installments }}x de R$ {{ rel_prod.installment_value|floatformat:2 }}
+                                    </div>
+                                {% endif %}
                             {% endif %}
                         </div>
                     </div>
