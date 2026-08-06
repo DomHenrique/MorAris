@@ -1,0 +1,312 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static jazzmin dashboard_tags %}
+{% get_jazzmin_ui_tweaks as jazzmin_ui %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+  .gridd-dashboard-card {
+      background: #1e1e2d;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+  }
+  .gridd-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+  }
+  .gridd-text-box h3 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+  }
+  .gridd-text-box p {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #9e9e9e;
+  }
+  
+  .icon-orange { background: rgba(249, 115, 22, 0.2); color: #f97316; }
+  .icon-yellow { background: rgba(234, 179, 8, 0.2); color: #eab308; }
+  .icon-blue { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+  .icon-teal { background: rgba(20, 184, 166, 0.2); color: #14b8a6; }
+
+  .gridd-quick-actions {
+      background: #1e1e2d;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255,255,255,0.05);
+  }
+  .gridd-quick-actions h4 {
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 20px;
+      font-size: 18px;
+  }
+  .gridd-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      color: #fff;
+      text-decoration: none !important;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+  }
+  .gridd-action-btn:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+  }
+  .gridd-action-btn h5 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+  }
+  .gridd-action-btn p {
+      margin: 0;
+      margin-top: 4px;
+      font-size: 12px;
+      color: #9e9e9e;
+  }
+</style>
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block content_title %} {% trans 'Dashboard' %} {% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
+        <li class="breadcrumb-item">{% trans 'Dashboard' %}</li>
+    </ol>
+{% endblock %}
+
+
+{% block content %}
+    {% get_dashboard_stats as stats %}
+
+    <!-- Custom Gridd Dashboard Blocks -->
+    <div class="row">
+        <div class="col-12 col-sm-6 col-lg-3">
+            <div class="gridd-dashboard-card">
+                <div class="gridd-icon-box icon-orange">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <div class="gridd-text-box">
+                    <p>Produtos</p>
+                    <h3>{{ stats.total_produtos }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <div class="gridd-dashboard-card">
+                <div class="gridd-icon-box icon-yellow">
+                    <i class="fas fa-folder"></i>
+                </div>
+                <div class="gridd-text-box">
+                    <p>Categorias</p>
+                    <h3>{{ stats.total_categorias }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <div class="gridd-dashboard-card">
+                <div class="gridd-icon-box icon-blue">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="gridd-text-box">
+                    <p>Banners</p>
+                    <h3>{{ stats.total_banners }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <div class="gridd-dashboard-card">
+                <div class="gridd-icon-box icon-teal">
+                    <i class="fas fa-comment-dots"></i>
+                </div>
+                <div class="gridd-text-box">
+                    <p>Depoimentos</p>
+                    <h3>{{ stats.total_depoimentos }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ações Rápidas -->
+    <div class="gridd-quick-actions">
+        <h4>Ações Rápidas</h4>
+        <div class="row">
+            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                <a href="{% url 'admin:core_product_add' %}" class="gridd-action-btn">
+                    <div class="gridd-icon-box" style="background: transparent; color: #f97316; font-size: 28px; width: 32px;">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <div>
+                        <h5>Adicionar Produto</h5>
+                        <p>Novo item no catálogo</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                <a href="{% url 'admin:core_banner_add' %}" class="gridd-action-btn">
+                    <div class="gridd-icon-box" style="background: transparent; color: #eab308; font-size: 28px; width: 32px;">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <div>
+                        <h5>Nova Campanha</h5>
+                        <p>Banner promocional</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a href="{% url 'admin:empresa_sobreempresa_changelist' %}" class="gridd-action-btn">
+                    <div class="gridd-icon-box" style="background: transparent; color: #3b82f6; font-size: 28px; width: 32px;">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <div>
+                        <h5>Atualizar Horários</h5>
+                        <p>Telefones e endereço</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Original Jazzmin App List -->
+    {% get_side_menu using="app_list" as dashboard_list %}
+    {% if dashboard_list %}
+        {% widthratio dashboard_list|length 2 1 as middle %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-lg-9 col-12">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    {% for app in dashboard_list %}
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="m-0">{{ app.name }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-sm">
+                                    <tbody>
+                                    {% for model in app.models %}
+                                        <tr>
+                                            <td>
+                                                {% if model.url %}<a href="{{ model.url }}">{{ model.name }}</a>{% else %}{{ model.name }}{% endif %}
+                                            </td>
+                                            <td>
+                                                <div class="btn-group float-right">
+                                                    {% if model.add_url %}
+                                                        <a href="{{ model.add_url }}" class="btn btn-xs {{ jazzmin_ui.button_classes.success }} addlink">{% trans 'Add' %}</a>
+                                                    {% endif %}
+                                                    {% if model.url %}
+                                                        {% if model.view_only %}
+                                                            <a href="{{ model.url }}" class="btn btn-xs {{ jazzmin_ui.button_classes.info }} viewlink">{% trans 'View' %}</a>
+                                                        {% else %}
+                                                            <a href="{{ model.url }}" class="btn btn-xs {{ jazzmin_ui.button_classes.info }} changelink">{% if model.custom %}{% trans 'Go' %}{% else %}{% trans 'Change' %}{% endif %}</a>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        {% if forloop.counter == middle|add:"0" %}
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                        {% endif %}
+
+                    {% endfor %}
+                    </div>
+            </div>
+
+        </div>
+        <div class="col-lg-3 col-12">
+            <div id="content-related">
+                <div class="module" id="recent-actions-module">
+                    <h4 class="mb-3">{% trans 'Recent actions' %}</h4>
+                    {% load log %}
+                    {% get_admin_log 6 as admin_log for_user user %}
+                    {% if not admin_log %}
+                        <p>{% trans 'None available' %}</p>
+                    {% else %}
+                        <div class="timeline">
+                            {% for entry in admin_log %}
+                                <div>
+                                    {% if entry.is_change %}
+                                        <i class="fas fa-edit bg-gray text-xs"></i>
+                                    {% elif entry.is_deletion %}
+                                        <i class="fas fa-trash bg-danger text-xs"></i>
+                                    {% elif entry.is_addition %}
+                                        <i class="fas fa-plus-circle bg-success text-xs"></i>
+                                    {% endif %}
+
+                                    <div class="timeline-item">
+                                        <span class="time"><i class="fas fa-clock"></i> {% blocktrans with timesince=entry.action_time|timesince %}{{ timesince }} ago{% endblocktrans %}</span>
+                                        <h3 class="timeline-header no-border">
+                                            {% if entry.is_deletion or not entry.get_admin_url %}
+                                                {{ entry.object_repr }}
+                                            {% else %}
+                                                <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                                            {% endif %}
+
+                                            {% if entry.model %}
+                                                <span class="mini quiet">
+                                                    {% filter capfirst %}
+                                                        {{ entry.model }}
+                                                    {% endfilter %}
+                                                </span>
+                                            {% endif %}
+                                        </h3>
+                                        {% if not entry.is_deletion %}
+                                            <div class="timeline-body">
+                                                {% if entry.is_addition %}
+                                                    {{ entry }}
+                                                {% else %}
+                                                    <ul style="list-style: none; padding: 0;">
+                                                        {% action_message_to_list entry as action_message_list %}
+                                                        {% for action_message in action_message_list %}
+                                                            <li>{{ action_message.msg|style_bold_first_word }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div>
+                                <i class="fa fa-clock bg-gray"></i>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
