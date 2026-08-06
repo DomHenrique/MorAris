@@ -18,7 +18,14 @@ class StaffRequiredMixin(UserPassesTestMixin):
 
 @user_passes_test(is_staff, login_url='/painel/login/')
 def dashboard(request):
-    return render(request, 'painel/dashboard.html')
+    context = {
+        'total_produtos': Product.objects.count(),
+        'total_categorias': Category.objects.count(),
+        'total_marcas': Marca.objects.count(),
+        'total_depoimentos': Testimonial.objects.count(),
+        'ultimos_produtos': Product.objects.order_by('-created_at')[:5]
+    }
+    return render(request, 'painel/dashboard.html', context)
 
 class CategoryListView(StaffRequiredMixin, ListView):
     model = Category
