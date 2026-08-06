@@ -4,22 +4,22 @@
 {% block page_title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-  <!-- Card: Total Produtos -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+  <!-- Card: Produtos -->
   <div class="gridd-card p-6 flex items-center gap-4">
     <div class="w-12 h-12 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center text-2xl shrink-0">
-      <i class="ri-shopping-cart-2-line"></i>
+      <i class="ri-stack-line"></i>
     </div>
     <div>
-      <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider">Total de Produtos</p>
+      <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider">Produtos</p>
       <h3 class="text-2xl font-bold text-white mt-1">{{ total_produtos }}</h3>
     </div>
   </div>
   
   <!-- Card: Categorias -->
   <div class="gridd-card p-6 flex items-center gap-4">
-    <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl shrink-0">
-      <i class="ri-layout-grid-line"></i>
+    <div class="w-12 h-12 rounded-xl bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-2xl shrink-0">
+      <i class="ri-folder-2-line"></i>
     </div>
     <div>
       <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider">Categorias</p>
@@ -27,21 +27,21 @@
     </div>
   </div>
 
-  <!-- Card: Marcas -->
+  <!-- Card: Banners -->
   <div class="gridd-card p-6 flex items-center gap-4">
-    <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl shrink-0">
-      <i class="ri-store-2-line"></i>
+    <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl shrink-0">
+      <i class="ri-image-line"></i>
     </div>
     <div>
-      <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider">Marcas Parceiras</p>
-      <h3 class="text-2xl font-bold text-white mt-1">{{ total_marcas }}</h3>
+      <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider">Banners</p>
+      <h3 class="text-2xl font-bold text-white mt-1">{{ total_banners }}</h3>
     </div>
   </div>
 
   <!-- Card: Depoimentos -->
   <div class="gridd-card p-6 flex items-center gap-4">
-    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl shrink-0">
-      <i class="ri-discuss-line"></i>
+    <div class="w-12 h-12 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-2xl shrink-0">
+      <i class="ri-chat-quote-line"></i>
     </div>
     <div>
       <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider">Depoimentos</p>
@@ -50,71 +50,44 @@
   </div>
 </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-  <!-- Ultimos Produtos -->
-  <div class="lg:col-span-2 gridd-card p-6">
-    <div class="flex items-center justify-between mb-4">
-      <h4 class="text-lg font-bold text-white">Últimos Produtos Adicionados</h4>
-      <a href="{% url 'painel:product_list' %}" class="text-sm text-orange-400 hover:text-orange-300">Ver Todos</a>
-    </div>
-    <div class="overflow-x-auto">
-      <table class="w-full text-left border-collapse">
-        <thead>
-          <tr class="border-b border-gray-700/50">
-            <th class="py-3 px-4 text-xs uppercase tracking-wider text-gray-400 font-semibold">Produto</th>
-            <th class="py-3 px-4 text-xs uppercase tracking-wider text-gray-400 font-semibold">Categoria</th>
-            <th class="py-3 px-4 text-xs uppercase tracking-wider text-gray-400 font-semibold">Marca</th>
-            <th class="py-3 px-4 text-xs uppercase tracking-wider text-gray-400 font-semibold">Data</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for produto in ultimos_produtos %}
-          <tr class="border-b border-gray-800/50 hover:bg-white/5 transition-colors">
-            <td class="py-3 px-4">
-              <div class="flex items-center gap-3">
-                {% if produto.images.first %}
-                  <img src="{{ produto.images.first.image.url }}" alt="{{ produto.name }}" class="w-10 h-10 rounded-md object-cover">
-                {% else %}
-                  <div class="w-10 h-10 rounded-md bg-gray-700 flex items-center justify-center text-gray-400"><i class="ri-image-line"></i></div>
-                {% endif %}
-                <span class="text-sm font-medium text-white">{{ produto.name }}</span>
-              </div>
-            </td>
-            <td class="py-3 px-4 text-sm text-gray-300">{{ produto.category.name }}</td>
-            <td class="py-3 px-4 text-sm text-gray-300">{{ produto.marca.name|default:"-" }}</td>
-            <td class="py-3 px-4 text-sm text-gray-400">{{ produto.created_at|date:"d/m/Y" }}</td>
-          </tr>
-          {% empty %}
-          <tr>
-            <td colspan="4" class="py-6 text-center text-gray-400 text-sm">Nenhum produto cadastrado ainda.</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
+<!-- Ações Rápidas -->
+<div class="gridd-card p-6">
+  <h4 class="text-lg font-bold text-white mb-5">Ações Rápidas</h4>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    
+    <!-- Action 1 -->
+    <a href="{% url 'painel:product_create' %}" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-transparent">
+      <div class="text-orange-400 text-2xl shrink-0">
+        <i class="ri-add-circle-line"></i>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold text-sm">Adicionar Produto</h5>
+        <p class="text-gray-400 text-xs mt-1">Novo item no catálogo</p>
+      </div>
+    </a>
+    
+    <!-- Action 2 -->
+    <a href="{% url 'painel:banner_create' %}" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-transparent">
+      <div class="text-yellow-400 text-2xl shrink-0">
+        <i class="ri-image-add-line"></i>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold text-sm">Nova Campanha</h5>
+        <p class="text-gray-400 text-xs mt-1">Banner promocional</p>
+      </div>
+    </a>
+    
+    <!-- Action 3 -->
+    <a href="{% url 'painel:sobre_empresa' %}" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-transparent">
+      <div class="text-blue-400 text-2xl shrink-0">
+        <i class="ri-pencil-line"></i>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold text-sm">Atualizar Horários</h5>
+        <p class="text-gray-400 text-xs mt-1">Telefones e endereço</p>
+      </div>
+    </a>
 
-  <!-- Ações Rápidas -->
-  <div class="gridd-card p-6">
-    <h4 class="text-lg font-bold text-white mb-4">Ações Rápidas</h4>
-    <div class="flex flex-col gap-3">
-      <a href="{% url 'painel:product_create' %}" class="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-orange-500/10 text-gray-300 hover:text-orange-400 transition-colors border border-transparent hover:border-orange-500/20">
-        <i class="ri-add-circle-line text-xl"></i>
-        <span class="font-medium text-sm">Novo Produto</span>
-      </a>
-      <a href="{% url 'painel:category_create' %}" class="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-blue-500/10 text-gray-300 hover:text-blue-400 transition-colors border border-transparent hover:border-blue-500/20">
-        <i class="ri-folder-add-line text-xl"></i>
-        <span class="font-medium text-sm">Nova Categoria</span>
-      </a>
-      <a href="{% url 'painel:marca_create' %}" class="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-purple-500/10 text-gray-300 hover:text-purple-400 transition-colors border border-transparent hover:border-purple-500/20">
-        <i class="ri-store-3-line text-xl"></i>
-        <span class="font-medium text-sm">Nova Marca</span>
-      </a>
-      <a href="{% url 'painel:testimonial_create' %}" class="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-emerald-500/10 text-gray-300 hover:text-emerald-400 transition-colors border border-transparent hover:border-emerald-500/20">
-        <i class="ri-chat-quote-line text-xl"></i>
-        <span class="font-medium text-sm">Novo Depoimento</span>
-      </a>
-    </div>
   </div>
 </div>
 {% endblock %}
