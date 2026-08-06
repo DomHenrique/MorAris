@@ -221,6 +221,7 @@ JAZZMIN_SETTINGS = {
     },
     "default_icon_parents": "ri-folder-open-line",
     "default_icon_children": "ri-checkbox-blank-circle-line",
+    "changeform_format": "horizontal_tabs",
 }
 
 JAZZMIN_UI_TWEAKS = {

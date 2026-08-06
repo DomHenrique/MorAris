@@ -187,8 +187,7 @@ class Product(models.Model):
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="gallery_images", verbose_name="Produto")
     
-    image = models.ImageField("Imagem Extra (Desktop)", upload_to="products/gallery/")
-    mobile_image = models.ImageField("Imagem Extra (Mobile)", upload_to="products/gallery/mobile/", null=True, blank=True)
+    image = models.ImageField("Imagem Extra", upload_to="products/gallery/")
     
     order = models.PositiveIntegerField("Ordem", default=0)
 

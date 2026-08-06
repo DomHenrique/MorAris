@@ -1,0 +1,168 @@
+{% load i18n admin_urls static admin_modify %}
+<style>
+/* CSS to transform Tabular into Grid */
+.gallery-container.view-grid table {
+    display: block;
+    width: 100%;
+    border: none;
+}
+.gallery-container.view-grid thead {
+    display: none; /* Hide headers in grid view */
+}
+.gallery-container.view-grid tbody {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+.gallery-container.view-grid tr {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 16px;
+    background: #1e1e2d;
+    position: relative;
+}
+.gallery-container.view-grid td {
+    display: block;
+    border: none;
+    padding: 4px 0;
+}
+.gallery-container.view-grid td.original {
+    padding: 0;
+}
+.gallery-container.view-grid td.field-image_thumbnail {
+    margin-bottom: 10px;
+}
+.gallery-container.view-grid td.field-image_thumbnail img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover;
+    border-radius: 6px;
+}
+.gallery-container.view-grid td.delete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 0;
+    z-index: 10;
+}
+.gallery-container.view-grid td.delete label {
+    display: none; /* Hide the text, keep the checkbox */
+}
+.gallery-container.view-grid .empty-form {
+    /* Hide the empty form in grid view to keep it clean, user can add in list view */
+    /* Actually we can show it but it might look weird. We'll leave it visible so they can add */
+}
+
+/* Toggle buttons styling */
+.gallery-toggle-btn {
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-right: 8px;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+.gallery-toggle-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+.gallery-toggle-btn.active {
+    background: #f97316;
+    color: #fff;
+    border-color: #f97316;
+}
+</style>
+
+<div class="js-inline-admin-formset inline-group" id="{{ inline_admin_formset.formset.prefix }}-group"
+     data-inline-type="tabular"
+     data-inline-formset="{{ inline_admin_formset.inline_formset_data }}">
+  
+  <div class="gallery-controls" style="margin-bottom: 15px; display: flex; justify-content: flex-end; align-items: center;">
+      <button type="button" class="gallery-toggle-btn active" onclick="setGalleryView('grid', this)">
+          <i class="fas fa-th"></i> Grade
+      </button>
+      <button type="button" class="gallery-toggle-btn" onclick="setGalleryView('list', this)">
+          <i class="fas fa-list"></i> Lista
+      </button>
+  </div>
+
+  <div class="tabular inline-related {% if forloop.last %}last-related{% endif %} gallery-container view-grid">
+{{ inline_admin_formset.formset.management_form }}
+<fieldset class="module {{ inline_admin_formset.classes }}">
+   {% if inline_admin_formset.formset.max_num == 1 %}
+     <h2>{{ inline_admin_formset.opts.verbose_name|capfirst }}</h2>
+   {% else %}
+     <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
+   {% endif %}
+   {{ inline_admin_formset.formset.non_form_errors }}
+   <table>
+     <thead><tr>
+       <th class="original"></th>
+     {% for field in inline_admin_formset.fields %}
+       <th class="column-{{ field.name }}{% if field.required %} required{% endif %}{% if field.widget.is_hidden %} hidden{% endif %}">{{ field.label|capfirst }}
+       {% if field.help_text %}<img src="{% static "admin/img/icon-unknown.svg" %}" class="help help-tooltip" width="10" height="10" alt="({{ field.help_text|striptags }})" title="{{ field.help_text|striptags }}">{% endif %}
+       </th>
+     {% endfor %}
+     {% if inline_admin_formset.formset.can_delete and inline_admin_formset.has_delete_permission %}<th>{% translate "Delete?" %}</th>{% endif %}
+     </tr></thead>
+
+     <tbody>
+     {% for inline_admin_form in inline_admin_formset %}
+        {% if inline_admin_form.form.non_field_errors %}
+        <tr class="row-form-errors"><td colspan="{{ inline_admin_form|cell_count }}">{{ inline_admin_form.form.non_field_errors }}</td></tr>
+        {% endif %}
+        <tr class="form-row {% if inline_admin_form.original or inline_admin_form.show_url %}has_original{% endif %}{% if forloop.last and inline_admin_formset.has_add_permission %} empty-form{% endif %}"
+             id="{{ inline_admin_formset.formset.prefix }}-{% if forloop.last and inline_admin_formset.has_add_permission %}empty{% else %}{{ forloop.counter0 }}{% endif %}">
+        <td class="original">
+          {% if inline_admin_form.original or inline_admin_form.show_url %}<p>
+          {% if inline_admin_form.original %}
+          {{ inline_admin_form.original }}
+          {% if inline_admin_form.model_admin.show_change_link and inline_admin_form.model_admin.has_registered_model %}<a href="{% url inline_admin_form.model_admin.opts|admin_urlname:'change' inline_admin_form.original.pk|admin_urlquote %}" class="{{ inline_admin_formset.has_change_permission|yesno:'inlinechangelink,inlineviewlink' }}">{% if inline_admin_formset.has_change_permission %}{% translate "Change" %}{% else %}{% translate "View" %}{% endif %}</a>{% endif %}
+          {% endif %}
+          {% if inline_admin_form.show_url %}<a href="{{ inline_admin_form.absolute_url }}">{% translate "View on site" %}</a>{% endif %}
+            </p>{% endif %}
+          {% if inline_admin_form.needs_explicit_pk_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+          {% if inline_admin_form.fk_field %}{{ inline_admin_form.fk_field.field }}{% endif %}
+        </td>
+        {% for fieldset in inline_admin_form %}
+          {% for line in fieldset %}
+            {% for field in line %}
+              <td class="{% if field.field.name %}field-{{ field.field.name }}{% endif %}{% if field.field.is_hidden %} hidden{% endif %}">
+              {% if field.is_readonly %}
+                  <p>{{ field.contents }}</p>
+              {% else %}
+                  {{ field.field.errors.as_ul }}
+                  {{ field.field }}
+              {% endif %}
+              </td>
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+        {% if inline_admin_formset.formset.can_delete and inline_admin_formset.has_delete_permission %}
+          <td class="delete">{% if inline_admin_form.original %}{{ inline_admin_form.deletion_field.field }}{% endif %}</td>
+        {% endif %}
+        </tr>
+     {% endfor %}
+     </tbody>
+   </table>
+</fieldset>
+  </div>
+</div>
+
+<script>
+function setGalleryView(view, btn) {
+    var container = btn.closest('.js-inline-admin-formset').querySelector('.gallery-container');
+    container.className = 'tabular inline-related gallery-container view-' + view;
+    
+    var btns = btn.parentElement.querySelectorAll('.gallery-toggle-btn');
+    btns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+</script>

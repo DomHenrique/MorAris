@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,0,-3199.414139)">
+        <g id="PERFIL-MORARIS" serif:id="PERFIL MORARIS" transform="matrix(83.333333,0,0,83.333333,0,3199.414139)">
+            <rect x="0" y="0" width="12" height="12" style="fill:none;"/>
+            <g transform="matrix(0.004437,0,0,0.004437,6,5.925901)">
+                <g transform="matrix(1,0,0,1,-1422.222222,-1422.222222)">
+                    <g transform="matrix(98.080396,0,0,98.080396,245.257468,243.389441)">
+                        <path d="M23.121,9.069L15.536,1.483C13.594,-0.453 10.406,-0.453 8.464,1.483L0.879,9.069C0.315,9.63 -0.002,10.394 -0,11.19L0,21.007C0,22.653 1.354,24.007 3,24.007L21,24.007C22.646,24.007 24,22.653 24,21.007L24,11.19C24.002,10.394 23.685,9.63 23.121,9.069ZM15,22.007L9,22.007L9,18.073C9,16.427 10.354,15.073 12,15.073C13.646,15.073 15,16.427 15,18.073L15,22.007ZM22,21.007C22,21.556 21.549,22.007 21,22.007L17,22.007L17,18.073C17,15.33 14.743,13.073 12,13.073C9.257,13.073 7,15.33 7,18.073L7,22.007L3,22.007C2.451,22.007 2,21.556 2,21.007L2,11.19C2.001,10.925 2.106,10.671 2.293,10.483L9.878,2.9C11.044,1.74 12.956,1.74 14.122,2.9L21.707,10.486C21.893,10.673 21.998,10.926 22,11.19L22,21.007Z" style="fill:rgb(110,77,56);fill-opacity:0;fill-rule:nonzero;stroke:rgb(110,77,56);stroke-width:0.85px;"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

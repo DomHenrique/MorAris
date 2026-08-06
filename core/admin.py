@@ -7,13 +7,14 @@ class AdminMediaMixin:
         css = {
             'all': ('admin/css/custom_admin.css',)
         }
-        js = ('admin/js/image_popover.js',)
+        js = ('admin/js/image_popover.js', 'admin/js/gallery_validation.js')
 
 class ProductImageInline(AdminMediaMixin, admin.TabularInline):
     model = ProductImage
     extra = 1
+    template = "admin/core/productimage/inline_gallery.html"
     readonly_fields = ('image_thumbnail',)
-    fields = ('image_thumbnail', 'image', 'mobile_image', 'order')
+    fields = ('image_thumbnail', 'image', 'order')
 
     def image_thumbnail(self, obj):
         if obj.image:
@@ -29,6 +30,27 @@ class ProductAdmin(AdminMediaMixin, admin.ModelAdmin):
     list_filter = ('sob_consulta', 'active', 'is_featured', 'is_promotion', 'category')
     search_fields = ('name', 'description')
     prepopulated_fields = {'slug': ('name',)}
+    
+    fieldsets = (
+        ('Geral', {
+            'fields': (
+                'name', 'slug', 'category', 'description', 
+                'image', 'mobile_image', 'unit', 'active'
+            )
+        }),
+        ('Preço e Status', {
+            'fields': (
+                'price', 'promotional_price', 'max_installments', 'price_display_mode', 'sob_consulta', 'is_featured', 'is_promotion'
+            )
+        }),
+        ('SEO', {
+            'fields': (
+                'meta_title', 'meta_description'
+            ),
+            'classes': ('collapse',)
+        }),
+    )
+    
     inlines = [ProductImageInline]
 
     def image_preview(self, obj):

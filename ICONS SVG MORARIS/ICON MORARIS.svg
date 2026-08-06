@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,0,-3199.410459)">
+        <g id="ICON-MORARIS" serif:id="ICON MORARIS" transform="matrix(83.333333,0,0,83.333333,0,3199.410459)">
+            <rect x="0" y="0" width="12" height="12" style="fill:none;"/>
+            <g transform="matrix(0.002095,-0.001937,0.002602,0.002815,5.612114,5.6606)">
+                <g transform="matrix(1,0,0,1,-1422.222222,-1422.222222)">
+                    <g transform="matrix(118.518519,0,0,118.518519,0,0)">
+                        <path d="M12,0L2,5.522L2,21C2,22.646 3.354,24 5,24L19,24C20.644,23.995 21.995,22.644 22,21L22,5.522L12,0ZM12,8.5C11.177,8.5 10.5,7.823 10.5,7C10.5,6.177 11.177,5.5 12,5.5C12.823,5.5 13.5,6.177 13.5,7C13.5,7.823 12.823,8.5 12,8.5Z" style="fill:rgb(110,77,56);fill-rule:nonzero;"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

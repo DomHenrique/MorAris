@@ -126,10 +126,9 @@ class UnidadeForm(forms.ModelForm):
 
 ProductImageFormSet = inlineformset_factory(
     Product, ProductImage, 
-    fields=['image', 'mobile_image', 'order'],
+    fields=['image', 'order'],
     widgets={
         'image': forms.ClearableFileInput(attrs={'class': 'gridd-input text-xs'}),
-        'mobile_image': forms.ClearableFileInput(attrs={'class': 'gridd-input text-xs'}),
         'order': forms.NumberInput(attrs={'class': 'gridd-input', 'style': 'width: 80px;'}),
     },
     extra=3,
